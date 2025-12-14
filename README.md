@@ -1,4 +1,4 @@
-# 🚚 CargoConnect — India's Premier Logistics & Cargo Transfer Booking Platform
+# 🚚 **CargoConnect** — India's Premier Logistics & Cargo Transfer Booking Platform 🚚
 
 CargoConnect is a modern, responsive web application built with React and TypeScript that revolutionizes cargo transportation across India. Our platform offers seamless booking experiences with real-time pricing, multiple vehicle options, and comprehensive logistics solutions.
 
