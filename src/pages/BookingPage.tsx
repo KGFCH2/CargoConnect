@@ -14,11 +14,8 @@ const BookingPage: React.FC = () => {
   const [bookingId, setBookingId] = useState<string>('');
 
   useEffect(() => {
-    // Simulate distance calculation when both locations are set
     if (state.pickup && state.dropoff) {
-      // In a real app, this would call a distance matrix API
-      // Simulating random distance for demo
-      const randomDistance = Math.floor(Math.random() * 50) + 5; // 5-55 km
+      const randomDistance = Math.floor(Math.random() * 50) + 5;
       setDistance(randomDistance);
       dispatch({ type: 'SET_DISTANCE', payload: randomDistance });
     }
@@ -34,7 +31,6 @@ const BookingPage: React.FC = () => {
     if (currentStep < 4) {
       setCurrentStep(currentStep + 1);
     } else {
-      // Submit booking
       completeBooking();
     }
   };
@@ -46,13 +42,10 @@ const BookingPage: React.FC = () => {
   };
 
   const completeBooking = () => {
-    // In a real app, this would submit the booking to the backend
-    // Simulating a booking confirmation
     setBookingComplete(true);
     setBookingId(`BK${Math.floor(Math.random() * 1000000).toString().padStart(6, '0')}`);
   };
 
-  // Check if current step is complete
   const isCurrentStepComplete = () => {
     switch (currentStep) {
       case 1:
@@ -70,87 +63,90 @@ const BookingPage: React.FC = () => {
 
   if (bookingComplete) {
     return (
-      <div className="min-h-screen bg-gray-50 pt-24 pb-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-sm p-8 text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <CheckCircle size={32} className="text-green-600" />
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 pt-32 pb-16 transition-colors duration-300">
+        <div className="container mx-auto px-6">
+          <div className="max-w-2xl mx-auto bg-white dark:bg-slate-800 rounded-2xl shadow-2xl dark:shadow-slate-900 p-10 text-center border border-slate-200 dark:border-slate-700">
+            <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 dark:from-green-500 dark:to-green-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg dark:shadow-green-900/30">
+              <CheckCircle size={40} className="text-white" />
             </div>
-            
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">Booking Confirmed!</h1>
-            
-            <p className="text-lg text-gray-700 mb-6">
-              Your booking has been successfully completed. Your booking ID is:
+
+            <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">Booking Confirmed!</h1>
+
+            <p className="text-lg text-slate-600 dark:text-slate-400 mb-8">
+              Your cargo transportation has been successfully booked. Your unique booking ID is:
             </p>
-            
-            <div className="bg-blue-50 py-3 px-4 rounded-md mb-8">
-              <span className="text-xl font-mono font-semibold text-blue-800">{bookingId}</span>
+
+            <div className="bg-gradient-to-r from-blue-100 dark:from-blue-900/30 to-blue-50 dark:to-slate-800 py-4 px-6 rounded-xl mb-10 border-2 border-blue-300 dark:border-blue-600">
+              <span className="text-3xl font-mono font-bold text-blue-700 dark:text-blue-400">{bookingId}</span>
             </div>
-            
-            <div className="space-y-4 text-left bg-gray-50 p-4 rounded-md mb-8">
-              <div className="grid grid-cols-2 gap-2">
-                <span className="text-gray-600">Vehicle:</span>
-                <span className="font-medium text-gray-900">{state.selectedVehicle?.name}</span>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-2">
-                <span className="text-gray-600">Pickup:</span>
-                <span className="font-medium text-gray-900">
-                  {state.pickup?.fullAddress || 
-                    `${state.pickup?.place}, ${state.pickup?.district}, ${state.pickup?.state}`}
-                </span>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-2">
-                <span className="text-gray-600">Dropoff:</span>
-                <span className="font-medium text-gray-900">
-                  {state.dropoff?.fullAddress || 
-                    `${state.dropoff?.place}, ${state.dropoff?.district}, ${state.dropoff?.state}`}
-                </span>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-2">
-                <span className="text-gray-600">Distance:</span>
-                <span className="font-medium text-gray-900">{state.distance} km</span>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-2">
-                <span className="text-gray-600">Total Fare:</span>
-                <span className="font-medium text-gray-900">₹{state.fare}</span>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-2">
-                <span className="text-gray-600">Payment Method:</span>
-                <span className="font-medium text-gray-900">
-                  {state.paymentMethod === 'card' && 'Credit/Debit Card'}
-                  {state.paymentMethod === 'upi' && 'UPI'}
-                  {state.paymentMethod === 'netbanking' && 'Net Banking'}
-                  {state.paymentMethod === 'cash' && 'Cash on Delivery'}
-                </span>
+
+            <div className="space-y-4 text-left bg-gradient-to-br from-slate-50 dark:from-slate-700 to-slate-100 dark:to-slate-800 p-8 rounded-xl mb-10 border border-slate-200 dark:border-slate-600">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="hover:bg-white dark:hover:bg-slate-700 p-3 rounded-lg transition-colors duration-300">
+                  <span className="text-slate-600 dark:text-slate-400 font-semibold block mb-1">Vehicle</span>
+                  <span className="font-bold text-slate-900 dark:text-white">{state.selectedVehicle?.name}</span>
+                </div>
+
+                <div className="hover:bg-white dark:hover:bg-slate-700 p-3 rounded-lg transition-colors duration-300">
+                  <span className="text-slate-600 dark:text-slate-400 font-semibold block mb-1">Distance</span>
+                  <span className="font-bold text-slate-900 dark:text-white">{state.distance} km</span>
+                </div>
+
+                <div className="hover:bg-white dark:hover:bg-slate-700 p-3 rounded-lg transition-colors duration-300">
+                  <span className="text-slate-600 dark:text-slate-400 font-semibold block mb-1">Pickup Location</span>
+                  <span className="font-semibold text-slate-900 dark:text-white">
+                    {state.pickup?.fullAddress ||
+                      `${state.pickup?.place}, ${state.pickup?.district}, ${state.pickup?.state}`}
+                  </span>
+                </div>
+
+                <div className="hover:bg-white dark:hover:bg-slate-700 p-3 rounded-lg transition-colors duration-300">
+                  <span className="text-slate-600 dark:text-slate-400 font-semibold block mb-1">Dropoff Location</span>
+                  <span className="font-semibold text-slate-900 dark:text-white">
+                    {state.dropoff?.fullAddress ||
+                      `${state.dropoff?.place}, ${state.dropoff?.district}, ${state.dropoff?.state}`}
+                  </span>
+                </div>
+
+                <div className="hover:bg-white dark:hover:bg-slate-700 p-3 rounded-lg transition-colors duration-300">
+                  <span className="text-slate-600 dark:text-slate-400 font-semibold block mb-1">Total Fare</span>
+                  <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">₹{state.fare}</span>
+                </div>
+
+                <div className="hover:bg-white dark:hover:bg-slate-700 p-3 rounded-lg transition-colors duration-300">
+                  <span className="text-slate-600 dark:text-slate-400 font-semibold block mb-1">Payment Method</span>
+                  <span className="font-semibold text-slate-900 dark:text-white">
+                    {state.paymentMethod === 'card' && 'Credit/Debit Card'}
+                    {state.paymentMethod === 'upi' && 'UPI'}
+                    {state.paymentMethod === 'netbanking' && 'Net Banking'}
+                    {state.paymentMethod === 'cash' && 'Cash on Delivery'}
+                  </span>
+                </div>
               </div>
             </div>
-            
-            <p className="text-gray-600 mb-8">
-              A confirmation has been sent to your registered email and mobile number. Our driver will contact you shortly.
+
+            <p className="text-slate-600 dark:text-slate-400 mb-10 leading-relaxed">
+              A confirmation with complete details has been sent to your registered email and mobile number. Our professional driver will contact you shortly with pickup details.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button 
+              <button
                 onClick={() => window.location.href = '/'}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-md transition-colors"
+                className="bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-600 dark:to-blue-700 hover:from-blue-700 hover:to-blue-800 dark:hover:from-blue-700 dark:hover:to-blue-800 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 relative group"
+                title="Return to the homepage"
               >
                 Back to Home
               </button>
-              <button 
+              <button
                 onClick={() => {
-                  // Reset booking and go to new booking
                   dispatch({ type: 'RESET_BOOKING' });
                   setBookingComplete(false);
                   setCurrentStep(1);
                 }}
-                className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-6 rounded-md transition-colors"
+                className="bg-white dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 text-blue-700 dark:text-blue-400 font-bold py-4 px-8 rounded-lg transition-all duration-300 border-2 border-blue-200 dark:border-blue-600 hover:border-blue-400 dark:hover:border-blue-400 transform hover:scale-105 relative group"
+                title="Start a new booking process"
               >
-                Book Another
+                Book Another Shipment
               </button>
             </div>
           </div>
@@ -160,31 +156,34 @@ const BookingPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-24 pb-16">
-      <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold text-center text-gray-900 mb-8">Book Your Transportation</h1>
-        
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 pt-28 pb-16 transition-colors duration-300">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-bold text-slate-900 dark:text-white mb-4">Complete Your Booking</h1>
+          <p className="text-lg text-slate-600 dark:text-slate-400">Four simple steps to book your transportation</p>
+        </div>
+
         {/* Steps Progress */}
-        <div className="max-w-3xl mx-auto mb-8">
-          <div className="flex items-center justify-between">
+        <div className="max-w-4xl mx-auto mb-12">
+          <div className="flex items-center justify-between mb-8">
             {[1, 2, 3, 4].map((step) => (
-              <div key={step} className="flex flex-col items-center">
-                <div 
+              <div key={step} className="flex flex-col items-center flex-1">
+                <div
                   className={`
-                    w-10 h-10 rounded-full flex items-center justify-center font-medium
-                    ${currentStep > step 
-                      ? 'bg-green-500 text-white' 
-                      : currentStep === step 
-                      ? 'bg-blue-600 text-white' 
-                      : 'bg-gray-200 text-gray-500'}
+                    w-14 h-14 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-300 transform
+                    ${currentStep > step
+                      ? 'bg-gradient-to-br from-green-400 to-green-600 dark:from-green-500 dark:to-green-600 text-white shadow-lg hover:scale-110'
+                      : currentStep === step
+                        ? 'bg-gradient-to-br from-blue-600 to-blue-700 dark:from-blue-600 dark:to-blue-700 text-white shadow-lg ring-2 ring-blue-300 dark:ring-blue-600 hover:scale-110'
+                        : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-300 dark:hover:bg-slate-600'}
                   `}
                 >
-                  {currentStep > step ? <CheckCircle size={20} /> : step}
+                  {currentStep > step ? '✓' : step}
                 </div>
-                <span 
+                <span
                   className={`
-                    text-sm mt-2 hidden sm:block
-                    ${currentStep >= step ? 'text-gray-800' : 'text-gray-500'}
+                    text-sm font-semibold mt-3 hidden sm:block transition-colors duration-300
+                    ${currentStep >= step ? 'text-slate-900 dark:text-white' : 'text-slate-500 dark:text-slate-500'}
                   `}
                 >
                   {step === 1 && 'Pickup'}
@@ -195,66 +194,71 @@ const BookingPage: React.FC = () => {
               </div>
             ))}
           </div>
-          
-          <div className="relative mt-2">
-            <div className="absolute top-0 left-5 right-5 h-1 bg-gray-200"></div>
-            <div 
-              className="absolute top-0 left-5 h-1 bg-blue-600 transition-all duration-300"
+
+          <div className="relative h-1 bg-slate-300 dark:bg-slate-700 rounded-full">
+            <div
+              className="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-600 dark:to-blue-700 rounded-full transition-all duration-300"
               style={{ width: `${((currentStep - 1) / 3) * 100}%` }}
             ></div>
           </div>
         </div>
-        
-        <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-sm p-6">
+
+        <div className="max-w-3xl mx-auto bg-white dark:bg-slate-800 rounded-2xl shadow-xl dark:shadow-slate-900 p-8 border border-slate-200 dark:border-slate-700 transition-colors duration-300">
           {/* Step 1: Pickup Location */}
           {currentStep === 1 && (
             <div>
-              <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
-                <MapPin size={24} className="text-orange-500 mr-2" />
-                Pickup Location
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 flex items-center">
+                <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                  <MapPin size={24} className="text-blue-600 dark:text-blue-400" />
+                </div>
+                Where should we pick up?
               </h2>
-              
+
               <LocationSelector
-                label="Where should we pick up your cargo?"
+                label="Select your pickup location"
                 placeholder="Enter your pickup address"
                 onLocationSelect={(location) => dispatch({ type: 'SET_PICKUP', payload: location })}
               />
             </div>
           )}
-          
+
           {/* Step 2: Dropoff Location */}
           {currentStep === 2 && (
             <div>
-              <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
-                <MapPin size={24} className="text-orange-500 mr-2" />
-                Destination
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 flex items-center">
+                <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mr-4">
+                  <MapPin size={24} className="text-blue-600 dark:text-blue-400" />
+                </div>
+                Where should we deliver?
               </h2>
-              
+
               <LocationSelector
-                label="Where should we deliver your cargo?"
+                label="Select your destination location"
                 placeholder="Enter the destination address"
                 onLocationSelect={(location) => dispatch({ type: 'SET_DROPOFF', payload: location })}
               />
-              
+
               {state.pickup && state.dropoff && distance > 0 && (
-                <div className="mt-6 p-4 bg-blue-50 rounded-md">
-                  <p className="text-blue-800">
-                    <span className="font-medium">Estimated Distance:</span> {distance} km
+                <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 dark:from-blue-900/20 to-cyan-50 dark:to-slate-800 rounded-xl border border-blue-200 dark:border-blue-600 hover:border-blue-300 dark:hover:border-blue-500 transition-colors duration-300">
+                  <p className="text-slate-800 dark:text-slate-200">
+                    <span className="font-bold text-blue-700 dark:text-blue-400">📍 Estimated Distance:</span> <span className="text-xl font-bold text-blue-700 dark:text-blue-400">{distance} km</span>
                   </p>
                 </div>
               )}
             </div>
           )}
-          
+
           {/* Step 3: Select Vehicle */}
           {currentStep === 3 && (
             <div>
-              <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
-                <TruckIcon size={24} className="text-orange-500 mr-2" />
-                Select Vehicle Type
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 flex items-center">
+                <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mr-4">
+                  <TruckIcon size={24} className="text-blue-600 dark:text-blue-400" />
+                </div>
+                Choose your vehicle
               </h2>
-              
-              <div className="grid sm:grid-cols-2 gap-4">
+
+              <div className="grid sm:grid-cols-2 gap-6 mb-8">
                 {vehicles.map((vehicle) => (
                   <VehicleCard
                     key={vehicle.id}
@@ -264,104 +268,114 @@ const BookingPage: React.FC = () => {
                   />
                 ))}
               </div>
-              
+
               {state.fare && state.selectedVehicle && (
-                <div className="mt-6 p-4 bg-blue-50 rounded-md">
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <p className="text-gray-700">Base Fare:</p>
-                      <p className="text-gray-700">Distance ({state.distance} km × ₹{state.selectedVehicle.pricePerKm}):</p>
-                      <p className="font-medium text-blue-800 text-lg mt-2">Total Fare:</p>
+                <div className="p-6 bg-gradient-to-r from-blue-50 dark:from-blue-900/20 to-cyan-50 dark:to-slate-800 rounded-xl border border-blue-200 dark:border-blue-600 hover:shadow-lg dark:hover:shadow-blue-900/20 transition-all duration-300">
+                  <h3 className="font-bold text-slate-900 dark:text-white mb-4 text-lg">Fare Breakdown</h3>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center p-2 hover:bg-white dark:hover:bg-slate-700 rounded transition-colors duration-300">
+                      <span className="text-slate-700 dark:text-slate-300">Base Fare:</span>
+                      <span className="font-bold text-slate-900 dark:text-white">₹{state.selectedVehicle.basePrice}</span>
                     </div>
-                    <div className="text-right">
-                      <p className="text-gray-700">₹{state.selectedVehicle.basePrice}</p>
-                      <p className="text-gray-700">₹{state.distance! * state.selectedVehicle.pricePerKm}</p>
-                      <p className="font-medium text-blue-800 text-lg mt-2">₹{state.fare}</p>
+                    <div className="flex justify-between items-center p-2 hover:bg-white dark:hover:bg-slate-700 rounded transition-colors duration-300">
+                      <span className="text-slate-700 dark:text-slate-300">Distance ({state.distance} km × ₹{state.selectedVehicle.pricePerKm}/km):</span>
+                      <span className="font-bold text-slate-900 dark:text-white">₹{state.distance! * state.selectedVehicle.pricePerKm}</span>
+                    </div>
+                    <div className="border-t-2 border-blue-300 dark:border-blue-600 pt-3">
+                      <div className="flex justify-between items-center">
+                        <span className="font-bold text-slate-900 dark:text-white">Total Fare:</span>
+                        <span className="text-2xl font-bold text-blue-700 dark:text-blue-400">₹{state.fare}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               )}
             </div>
           )}
-          
+
           {/* Step 4: Payment */}
           {currentStep === 4 && (
             <div>
-              <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
-                <IndianRupee size={24} className="text-orange-500 mr-2" />
-                Payment Method
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 flex items-center">
+                <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mr-4">
+                  <IndianRupee size={24} className="text-blue-600 dark:text-blue-400" />
+                </div>
+                Select payment method
               </h2>
-              
+
               <PaymentMethods
                 onSelect={(method) => dispatch({ type: 'SET_PAYMENT_METHOD', payload: method })}
               />
-              
+
               {/* Booking Summary */}
               {state.fare && state.selectedVehicle && (
-                <div className="mt-8">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Booking Summary</h3>
-                  <div className="bg-gray-50 p-4 rounded-md space-y-3">
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Vehicle:</span>
-                      <span className="font-medium">{state.selectedVehicle.name}</span>
+                <div className="mt-10 p-6 bg-slate-50 dark:bg-slate-700 rounded-xl border-2 border-slate-200 dark:border-slate-600 hover:border-slate-300 dark:hover:border-slate-500 transition-all duration-300">
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6">📋 Booking Summary</h3>
+                  <div className="space-y-4">
+                    <div className="flex justify-between pb-3 border-b border-slate-200 dark:border-slate-600 hover:bg-white dark:hover:bg-slate-600 px-2 rounded transition-colors duration-300">
+                      <span className="text-slate-700 dark:text-slate-300 font-medium">Vehicle:</span>
+                      <span className="font-bold text-slate-900 dark:text-white">{state.selectedVehicle.name}</span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Pickup:</span>
-                      <span className="font-medium">
-                        {state.pickup?.fullAddress || 
-                          `${state.pickup?.place}, ${state.pickup?.district}, ${state.pickup?.state}`}
+                    <div className="flex justify-between pb-3 border-b border-slate-200 dark:border-slate-600 hover:bg-white dark:hover:bg-slate-600 px-2 rounded transition-colors duration-300">
+                      <span className="text-slate-700 dark:text-slate-300 font-medium">Pickup:</span>
+                      <span className="font-bold text-slate-900 dark:text-white text-right max-w-xs">
+                        {state.pickup?.fullAddress ||
+                          `${state.pickup?.place}, ${state.pickup?.district}`}
                       </span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Dropoff:</span>
-                      <span className="font-medium">
-                        {state.dropoff?.fullAddress || 
-                          `${state.dropoff?.place}, ${state.dropoff?.district}, ${state.dropoff?.state}`}
+                    <div className="flex justify-between pb-3 border-b border-slate-200 dark:border-slate-600 hover:bg-white dark:hover:bg-slate-600 px-2 rounded transition-colors duration-300">
+                      <span className="text-slate-700 dark:text-slate-300 font-medium">Dropoff:</span>
+                      <span className="font-bold text-slate-900 dark:text-white text-right max-w-xs">
+                        {state.dropoff?.fullAddress ||
+                          `${state.dropoff?.place}, ${state.dropoff?.district}`}
                       </span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Distance:</span>
-                      <span className="font-medium">{state.distance} km</span>
+                    <div className="flex justify-between pb-3 border-b border-slate-200 dark:border-slate-600 hover:bg-white dark:hover:bg-slate-600 px-2 rounded transition-colors duration-300">
+                      <span className="text-slate-700 dark:text-slate-300 font-medium">Distance:</span>
+                      <span className="font-bold text-slate-900 dark:text-white">{state.distance} km</span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Total Fare:</span>
-                      <span className="font-medium">₹{state.fare}</span>
+                    <div className="flex justify-between pt-4 px-2">
+                      <span className="text-slate-900 dark:text-white font-bold text-lg">Total Fare:</span>
+                      <span className="font-bold text-3xl text-blue-700 dark:text-blue-400">₹{state.fare}</span>
                     </div>
                   </div>
                 </div>
               )}
             </div>
           )}
-          
+
           {/* Navigation Buttons */}
-          <div className="mt-8 flex justify-between">
+          <div className="mt-10 flex justify-between gap-4">
             <button
               onClick={handlePrevStep}
-              className={`px-6 py-2 rounded-md ${
-                currentStep === 1 
-                ? 'invisible' 
-                : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
-              }`}
+              className={`px-8 py-3 font-bold rounded-lg transition-all duration-500 ease-in-out transform relative group ${currentStep === 1
+                ? 'invisible'
+                : 'bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-white hover:bg-slate-300 dark:hover:bg-slate-600 hover:scale-105 hover:-translate-y-1'
+                }`}
+              title="Go back to previous step"
             >
-              Back
+              ← Back
             </button>
-            
+
             <button
               onClick={handleNextStep}
               disabled={!isCurrentStepComplete()}
               className={`
-                px-6 py-2 rounded-md flex items-center
+                px-8 py-3 font-bold rounded-lg flex items-center gap-2 transition-all duration-500 ease-in-out transform relative group
                 ${isCurrentStepComplete()
-                  ? 'bg-blue-600 text-white hover:bg-blue-700'
-                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'}
+                  ? 'bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-600 dark:to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 dark:hover:from-blue-700 dark:hover:to-blue-800 shadow-lg hover:shadow-xl hover:scale-105 hover:-translate-y-1'
+                  : 'bg-slate-300 dark:bg-slate-600 text-slate-500 dark:text-slate-400 cursor-not-allowed'}
               `}
+              title={currentStep < 4 ? 'Continue to next step' : 'Complete your booking'}
             >
               {currentStep < 4 ? (
                 <>
-                  Next <ArrowRight size={16} className="ml-2" />
+                  Next <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
                 </>
               ) : (
-                'Confirm Booking'
+                <>
+                  ✓ Confirm Booking
+                </>
               )}
             </button>
           </div>
