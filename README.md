@@ -4,7 +4,6 @@
 
 CargoConnect is a responsive web app that helps users book vehicles for moving luggage and cargo across locations in India. It focuses on a simple booking flow, clear vehicle choices, and an easy-to-use UI.
 
-
 ✨ Highlights
 
 - Fast Vite + React app
@@ -44,7 +43,6 @@ npm run dev
 npm run build
 ```
 
-
 🛠️ Deploy to Vercel (recommended)
 
 1. Make sure `vercel.json` exists (project already configured for static Vite build). If not, create one with `distDir` set to `dist`.
@@ -56,7 +54,6 @@ npm run build
 cd /d "D:\\Vs Code\\PROJECT\\CargoConnect"
 vercel --prod
 ```
-
 
 🎨 Favicon
 
