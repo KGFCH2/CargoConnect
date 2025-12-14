@@ -1,5 +1,6 @@
 import React from 'react';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
+import Loader from '../components/Loader';
 import { Link } from 'react-router-dom';
 
 const ContactPage: React.FC = () => {
@@ -180,8 +181,14 @@ const ContactPage: React.FC = () => {
                                     className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800 text-white font-bold py-4 rounded-lg transition-all duration-500 ease-in-out shadow-lg hover:shadow-xl dark:shadow-blue-900/30 flex items-center justify-center gap-2 transform hover:scale-105 hover:-translate-y-1 disabled:opacity-70 disabled:cursor-not-allowed"
                                     title="Send your message to our team"
                                 >
-                                    <Send size={20} />
-                                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                                    {isSubmitting ? (
+                                        <Loader label="Sending..." />
+                                    ) : (
+                                        <>
+                                            <Send size={20} />
+                                            Send Message
+                                        </>
+                                    )}
                                 </button>
                                 {submitMessage && (
                                     <p className={`text-sm text-center mt-4 ${submitMessage.includes('success') || submitMessage.includes('successfully') || submitMessage.includes('sent') ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Truck, Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react';
+import Loader from './Loader';
 import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
@@ -141,10 +142,10 @@ const Footer: React.FC = () => {
               <button
                 type="submit"
                 disabled={isSubscribing}
-                className="w-full bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-600 dark:to-blue-700 hover:from-blue-700 hover:to-blue-800 dark:hover:from-blue-700 dark:hover:to-blue-800 text-white font-bold py-3 rounded-lg transition-all duration-500 ease-in-out shadow-lg hover:shadow-xl transform hover:scale-105 hover:-translate-y-1 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-600 dark:to-blue-700 hover:from-blue-700 hover:to-blue-800 dark:hover:from-blue-700 dark:hover:to-blue-800 text-white font-bold py-3 rounded-lg transition-all duration-500 ease-in-out shadow-lg hover:shadow-xl transform hover:scale-105 hover:-translate-y-1 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center"
                 title="Subscribe to our newsletter for updates"
               >
-                {isSubscribing ? 'Subscribing...' : 'Subscribe'}
+                {isSubscribing ? <Loader label="Subscribing..." /> : 'Subscribe'}
               </button>
               {subscribeMessage && (
                 <p className={`text-sm text-center ${subscribeMessage.includes('success') || subscribeMessage.includes('Successfully') || subscribeMessage.includes('Thank you') ? 'text-green-400' : 'text-red-400'}`}>
