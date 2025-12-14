@@ -1,3 +1,123 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Professional base styles */
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-white dark:bg-slate-950 text-slate-900 dark:text-white antialiased transition-colors duration-300;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-bold tracking-tight;
+    }
+
+    a {
+        @apply transition-colors duration-300;
+    }
+
+    button {
+        @apply transition-all duration-300;
+    }
+}
+
+/* Professional component styles */
+@layer components {
+    .btn-primary {
+        @apply bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl;
+    }
+
+    .btn-secondary {
+        @apply bg-white hover:bg-slate-100 text-blue-700 font-bold py-3 px-6 rounded-lg transition-all duration-300 border-2 border-blue-200 hover:border-blue-400;
+    }
+
+    .card-professional {
+        @apply bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-slate-200;
+    }
+
+    .card-elevated {
+        @apply bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-200;
+    }
+
+    .input-professional {
+        @apply px-4 py-3 rounded-lg bg-white border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-slate-900 placeholder-slate-400 transition-all;
+    }
+
+    .badge-primary {
+        @apply inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold border border-blue-200;
+    }
+
+    .section-title {
+        @apply text-4xl font-bold text-slate-900;
+    }
+
+    .section-subtitle {
+        @apply text-lg text-slate-600;
+    }
+
+    .gradient-text {
+        @apply bg-gradient-to-r from-blue-600 to-cyan-400 bg-clip-text text-transparent;
+    }
+
+    .glass-effect {
+        @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-xl;
+    }
+
+    .fade-in {
+        animation: fadeIn 0.6s ease-in;
+    }
+
+    .slide-up {
+        animation: slideUp 0.6s ease-out;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
