@@ -1,219 +1,182 @@
 import React from 'react';
 import Hero from '../components/Hero';
-import { Truck, Clock, Shield, Award, CheckCircle } from 'lucide-react';
+import { Truck, Clock, Shield, Award, CheckCircle, ArrowRight, TrendingUp, Users, Globe, Zap } from 'lucide-react';
 import { vehicles } from '../data/vehicles';
 import VehicleCard from '../components/VehicleCard';
 import { Link } from 'react-router-dom';
 
 const HomePage: React.FC = () => {
+  const stats = [
+    { icon: Users, label: 'Active Users', value: '10K+' },
+    { icon: TrendingUp, label: 'Daily Shipments', value: '500+' },
+    { icon: Globe, label: 'Coverage Areas', value: '50+' },
+  ];
+
+  const features = [
+    {
+      icon: Zap,
+      title: 'Real-time Tracking',
+      description: 'Track your shipments in real-time with our advanced GPS system.',
+    },
+    {
+      icon: CheckCircle,
+      title: 'Reliable Service',
+      description: 'On-time delivery guaranteed or your money back.',
+    },
+    {
+      icon: Award,
+      title: 'Best Prices',
+      description: 'Competitive rates with no hidden charges.',
+    },
+  ];
+
   return (
-    <div>
+    <div className="min-h-screen bg-white dark:bg-slate-950 transition-colors duration-300">
       <Hero />
-      
-      {/* How It Works */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">How It Works</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Booking a transport vehicle has never been easier. Our simple process ensures a seamless experience.
-            </p>
-          </div>
-          
+
+      {/* Stats Section */}
+      <section className="py-16 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-900 dark:to-slate-800 transition-colors duration-300">
+        <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center p-6 rounded-lg border border-gray-100 shadow-sm">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-blue-800 font-bold text-xl">1</span>
+            {stats.map((stat, idx) => (
+              <div
+                key={idx}
+                className="text-center p-6 rounded-xl bg-white dark:bg-slate-800 shadow-md dark:shadow-slate-900 hover:shadow-xl dark:hover:shadow-slate-700 transition-all duration-300 transform hover:scale-105 group"
+              >
+                <div className="flex justify-center mb-4">
+                  <div className="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-lg group-hover:scale-110 transition-transform duration-300">
+                    <stat.icon className="text-blue-600 dark:text-blue-400" size={28} />
+                  </div>
+                </div>
+                <p className="text-slate-600 dark:text-slate-400 text-sm font-medium mb-2">
+                  {stat.label}
+                </p>
+                <p className="text-3xl font-bold text-slate-900 dark:text-white">
+                  {stat.value}
+                </p>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Enter Location</h3>
-              <p className="text-gray-600">
-                Provide your pickup and delivery locations using our easy selection tool.
-              </p>
-            </div>
-            
-            <div className="text-center p-6 rounded-lg border border-gray-100 shadow-sm">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-blue-800 font-bold text-xl">2</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Choose Vehicle</h3>
-              <p className="text-gray-600">
-                Select the right vehicle based on your cargo size and requirements.
-              </p>
-            </div>
-            
-            <div className="text-center p-6 rounded-lg border border-gray-100 shadow-sm">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-blue-800 font-bold text-xl">3</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Confirm & Pay</h3>
-              <p className="text-gray-600">
-                Review your booking details, pay securely, and wait for your vehicle to arrive.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
-      
-      {/* Our Vehicles */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Vehicles</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Choose from our wide range of well-maintained vehicles to meet your transportation needs.
+
+      {/* How It Works */}
+      <section className="py-20 bg-white dark:bg-slate-950 transition-colors duration-300">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <span className="inline-block bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+              OUR PROCESS
+            </span>
+            <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">Booking Made Simple</h2>
+            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+              Three simple steps to book your transport and get your cargo delivered safely across India.
             </p>
           </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {vehicles.map((vehicle) => (
+
+          <div className="grid md:grid-cols-3 gap-8 relative">
+            {/* Connecting line */}
+            <div className="hidden md:block absolute top-24 left-0 right-0 h-1 bg-gradient-to-r from-blue-200 dark:from-blue-900/30 via-blue-400 dark:via-blue-600 to-blue-200 dark:to-blue-900/30"></div>
+
+            {[1, 2, 3].map((step) => (
+              <div key={step} className="relative text-center group">
+                <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-blue-700 dark:from-blue-600 dark:to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold shadow-lg dark:shadow-blue-900/30 relative z-10 group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
+                  {step}
+                </div>
+                <h3 className={`text-xl font-bold text-slate-900 dark:text-white mb-3 transition-colors duration-300 ${step === 1 ? 'group-hover:text-blue-600 dark:group-hover:text-blue-400' : step === 2 ? 'group-hover:text-blue-600 dark:group-hover:text-blue-400' : 'group-hover:text-blue-600 dark:group-hover:text-blue-400'}`}>
+                  {step === 1 && 'Enter Locations'}
+                  {step === 2 && 'Select Service'}
+                  {step === 3 && 'Confirm Booking'}
+                </h3>
+                <p className="text-slate-600 dark:text-slate-400 leading-relaxed group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors duration-300">
+                  {step === 1 && 'Provide your pickup and delivery locations with ease using our intuitive location selector.'}
+                  {step === 2 && 'Choose the perfect service option that fits your shipping needs and budget.'}
+                  {step === 3 && 'Confirm your booking and receive instant confirmation with real-time tracking.'}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950 transition-colors duration-300">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
+              Why Choose CargoConnect?
+            </h2>
+            <p className="text-lg text-slate-600 dark:text-slate-400">
+              We offer the best logistics solutions tailored to your needs.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {features.map((feature, idx) => (
+              <div
+                key={idx}
+                className="p-8 rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 hover:shadow-lg dark:hover:shadow-blue-900/20 group"
+              >
+                <div className="flex justify-center mb-4">
+                  <div className="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-lg group-hover:bg-blue-200 dark:group-hover:bg-blue-800/50 transition-colors duration-300 group-hover:scale-110 transform">
+                    <feature.icon className="text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors duration-300" size={32} />
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 text-center group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                  {feature.title}
+                </h3>
+                <p className="text-slate-600 dark:text-slate-400 text-center group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors duration-300">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Vehicles Section */}
+      <section className="py-20 bg-white dark:bg-slate-950 transition-colors duration-300">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
+              Vehicles
+            </h2>
+            <p className="text-lg text-slate-600 dark:text-slate-400">
+              Choose the perfect vehicle for your shipping needs.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {vehicles.slice(0, 3).map((vehicle) => (
               <VehicleCard key={vehicle.id} vehicle={vehicle} />
             ))}
           </div>
-          
-          <div className="text-center mt-8">
-            <Link 
-              to="/vehicles" 
-              className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-6 rounded-md transition-colors"
+
+          <div className="text-center mt-12">
+            <Link
+              to="/vehicles"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-600 dark:to-blue-700 text-white px-8 py-3 rounded-lg hover:from-blue-700 hover:to-blue-800 dark:hover:from-blue-700 dark:hover:to-blue-800 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 group"
             >
               View All Vehicles
+              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
           </div>
         </div>
       </section>
-      
-      {/* Why Choose Us */}
-      <section className="py-16 bg-blue-900 text-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Why Choose Us</h2>
-            <p className="text-lg text-blue-100 max-w-2xl mx-auto">
-              We're committed to providing the best logistics experience with our premium service.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="flex flex-col items-center text-center p-6">
-              <div className="p-3 bg-orange-500 rounded-full mb-4">
-                <Shield size={28} className="text-white" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Safe & Secure</h3>
-              <p className="text-blue-100">
-                Your cargo is handled with utmost care and transported securely.
-              </p>
-            </div>
-            
-            <div className="flex flex-col items-center text-center p-6">
-              <div className="p-3 bg-orange-500 rounded-full mb-4">
-                <Clock size={28} className="text-white" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">On-Time Delivery</h3>
-              <p className="text-blue-100">
-                We value your time and commit to timely pickups and deliveries.
-              </p>
-            </div>
-            
-            <div className="flex flex-col items-center text-center p-6">
-              <div className="p-3 bg-orange-500 rounded-full mb-4">
-                <Award size={28} className="text-white" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Experienced Drivers</h3>
-              <p className="text-blue-100">
-                Our professional drivers ensure smooth and hassle-free transportation.
-              </p>
-            </div>
-            
-            <div className="flex flex-col items-center text-center p-6">
-              <div className="p-3 bg-orange-500 rounded-full mb-4">
-                <Truck size={28} className="text-white" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Well-Maintained Fleet</h3>
-              <p className="text-blue-100">
-                Our vehicles undergo regular maintenance to ensure reliability.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      {/* Testimonials */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">What Our Customers Say</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Don't just take our word for it. Here's what our satisfied customers have to say.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-gray-50 p-6 rounded-lg border border-gray-100 shadow-sm">
-              <div className="flex items-center mb-4">
-                <div className="text-orange-500">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="inline-block">★</span>
-                  ))}
-                </div>
-              </div>
-              <p className="text-gray-700 mb-4">
-                "I needed to move my furniture from Mumbai to Pune, and CargoConnect made it so easy. The driver was professional, and my items reached safely and on time."
-              </p>
-              <div className="font-medium text-gray-900">Rajesh Sharma, Mumbai</div>
-            </div>
-            
-            <div className="bg-gray-50 p-6 rounded-lg border border-gray-100 shadow-sm">
-              <div className="flex items-center mb-4">
-                <div className="text-orange-500">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="inline-block">★</span>
-                  ))}
-                </div>
-              </div>
-              <p className="text-gray-700 mb-4">
-                "The booking process was simple, and I could track my shipment in real-time. The pricing was transparent with no hidden charges. Highly recommended!"
-              </p>
-              <div className="font-medium text-gray-900">Priya Patel, Bangalore</div>
-            </div>
-            
-            <div className="bg-gray-50 p-6 rounded-lg border border-gray-100 shadow-sm">
-              <div className="flex items-center mb-4">
-                <div className="text-orange-500">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="inline-block">★</span>
-                  ))}
-                </div>
-              </div>
-              <p className="text-gray-700 mb-4">
-                "We use CargoConnect for our business deliveries regularly. Their consistent service quality and reliability have made them our preferred logistics partner."
-              </p>
-              <div className="font-medium text-gray-900">Amit Gupta, Delhi</div>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      {/* CTA */}
-      <section className="py-16 bg-gradient-to-r from-blue-800 to-blue-900 text-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-6">Ready to Transport Your Cargo?</h2>
-            <p className="text-xl mb-8">
-              Book a vehicle now and experience hassle-free logistics services across India.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link 
-                to="/book-now" 
-                className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-8 rounded-md transition-colors text-center"
-              >
-                Book Now
-              </Link>
-              <Link 
-                to="/contact" 
-                className="bg-transparent border-2 border-white hover:bg-white/10 text-white font-medium py-3 px-8 rounded-md transition-colors text-center"
-              >
-                Contact Us
-              </Link>
-            </div>
-          </div>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-700 dark:to-indigo-700 transition-colors duration-300">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-4xl font-bold text-white mb-4">Ready to Ship?</h2>
+          <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
+            Get started with CargoConnect today and enjoy reliable, fast, and affordable shipping.
+          </p>
+          <Link
+            to="/book-now"
+            className="inline-flex items-center gap-2 bg-white text-blue-600 dark:text-blue-700 px-8 py-3 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-100 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 group"
+          >
+            Book Your Shipment Now
+            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
+          </Link>
         </div>
       </section>
     </div>
