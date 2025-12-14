@@ -1,6 +1,4 @@
-# CargoConnect
-
-🚚 **CargoConnect** — India's Premier Logistics & Cargo Transfer Booking Platform
+# 🚚 CargoConnect — India's Premier Logistics & Cargo Transfer Booking Platform
 
 CargoConnect is a modern, responsive web application built with React and TypeScript that revolutionizes cargo transportation across India. Our platform offers seamless booking experiences with real-time pricing, multiple vehicle options, and comprehensive logistics solutions.
 
@@ -183,7 +181,7 @@ npm run build
 
 This project is private and proprietary.
 
-## � Documentation
+## 📒 Documentation
 
 - **`INSTRUCTIONS.md`** - Complete project setup and development guide
 - **`EMAIL_SETUP.md`** - Gmail configuration and local email testing
@@ -193,7 +191,7 @@ This project is private and proprietary.
 - **`QUICK_START.md`** - Quick reference guide
 - **`EMAIL_IMPLEMENTATION.md`** - Technical implementation details
 
-## �👨‍💻 Developer
+## 👨‍💻 Developer
 
 **Babin Bid**
 - **GitHub**: [https://github.com/KGFCH2](https://github.com/KGFCH2)
