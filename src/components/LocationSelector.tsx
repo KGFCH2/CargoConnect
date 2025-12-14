@@ -20,8 +20,8 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({
   const [fullAddress, setFullAddress] = useState<string>('');
   const [useFullAddress, setUseFullAddress] = useState<boolean>(false);
 
-  const districts = selectedState 
-    ? indianStates.find(state => state.name === selectedState)?.districts || [] 
+  const districts = selectedState
+    ? indianStates.find(state => state.name === selectedState)?.districts || []
     : [];
 
   useEffect(() => {
@@ -39,34 +39,34 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({
   return (
     <div className="space-y-4">
       <div>
-        <label className="block text-gray-700 font-medium mb-2">{label}</label>
-        
+        <label className="block text-gray-700 dark:text-gray-300 font-medium mb-2">{label}</label>
+
         <div className="flex items-center mb-2">
           <button
             type="button"
-            className={`px-4 py-2 rounded-l-md border ${!useFullAddress ? 'bg-blue-50 border-blue-500 text-blue-700' : 'bg-white border-gray-300 text-gray-700'}`}
+            className={`px-4 py-2 rounded-l-md border transition-all duration-300 hover:scale-105 hover:shadow-md ${!useFullAddress ? 'bg-blue-50 dark:bg-blue-900/30 border-blue-500 dark:border-blue-400 text-blue-700 dark:text-blue-400' : 'bg-white dark:bg-slate-700 border-gray-300 dark:border-slate-600 text-gray-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-600'}`}
             onClick={() => setUseFullAddress(false)}
           >
             State & District
           </button>
           <button
             type="button"
-            className={`px-4 py-2 rounded-r-md border ${useFullAddress ? 'bg-blue-50 border-blue-500 text-blue-700' : 'bg-white border-gray-300 text-gray-700'}`}
+            className={`px-4 py-2 rounded-r-md border transition-all duration-300 hover:scale-105 hover:shadow-md ${useFullAddress ? 'bg-blue-50 dark:bg-blue-900/30 border-blue-500 dark:border-blue-400 text-blue-700 dark:text-blue-400' : 'bg-white dark:bg-slate-700 border-gray-300 dark:border-slate-600 text-gray-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-600'}`}
             onClick={() => setUseFullAddress(true)}
           >
             Full Address
           </button>
         </div>
-        
+
         {useFullAddress ? (
           <div className="relative">
-            <MapPin size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            <MapPin size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-slate-500" />
             <input
               type="text"
               placeholder={placeholder}
               value={fullAddress}
               onChange={(e) => setFullAddress(e.target.value)}
-              className="pl-10 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="pl-10 w-full p-3 border border-gray-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
             />
           </div>
         ) : (
@@ -77,7 +77,7 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({
                 setSelectedState(e.target.value);
                 setSelectedDistrict('');
               }}
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 border border-gray-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
             >
               <option value="">Select State</option>
               {indianStates.map((state) => (
@@ -91,7 +91,7 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({
               value={selectedDistrict}
               onChange={(e) => setSelectedDistrict(e.target.value)}
               disabled={!selectedState}
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100 disabled:text-gray-500"
+              className="w-full p-3 border border-gray-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 disabled:bg-gray-100 dark:disabled:bg-slate-800 disabled:text-gray-500 dark:disabled:text-slate-500"
             >
               <option value="">Select District</option>
               {districts.map((district) => (
@@ -102,14 +102,14 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({
             </select>
 
             <div className="relative">
-              <Search size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <Search size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-slate-500" />
               <input
                 type="text"
                 placeholder="Area/Locality/Street"
                 value={place}
                 onChange={(e) => setPlace(e.target.value)}
                 disabled={!selectedDistrict}
-                className="pl-10 w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100 disabled:text-gray-500"
+                className="pl-10 w-full p-3 border border-gray-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 disabled:bg-gray-100 dark:disabled:bg-slate-800 disabled:text-gray-500 dark:disabled:text-slate-500"
               />
             </div>
           </div>
