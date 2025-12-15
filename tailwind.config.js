@@ -83,6 +83,30 @@ export default {
       transitionTimingFunction: {
         smooth: 'cubic-bezier(0.4, 0, 0.2, 1)',
       },
+      animation: {
+        'fade-in': 'fadeIn 0.7s ease-out forwards',
+        'slide-in-from-bottom-4': 'slideInFromBottom 0.7s ease-out forwards',
+        'slide-in-from-top-4': 'slideInFromTop 0.7s ease-out forwards',
+        'underline': 'underlineSlide 0.6s ease-out forwards',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        slideInFromBottom: {
+          '0%': { opacity: '0', transform: 'translateY(1rem)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        slideInFromTop: {
+          '0%': { opacity: '0', transform: 'translateY(-1rem)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        underlineSlide: {
+          '0%': { width: '0%' },
+          '100%': { width: '100%' },
+        },
+      },
     },
   },
   plugins: [],
