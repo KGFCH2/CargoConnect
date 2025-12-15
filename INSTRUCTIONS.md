@@ -85,7 +85,7 @@ cp .env.example .env
 
 **Required Variables:**
 ```
-EMAIL_USER=your-gmail@gmail.com
+EMAIL_USER=your-mail@gmail.com
 EMAIL_PASSWORD=your-16-char-app-password
 PORT=3001
 VITE_API_URL=http://localhost:3001
