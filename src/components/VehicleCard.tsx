@@ -59,21 +59,6 @@ const VehicleCard: React.FC<VehicleCardProps> = ({
         </div>
 
         <p className="text-sm text-slate-600 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-300 mb-6 leading-relaxed transition-colors duration-300">{vehicle.description}</p>
-
-        <button
-          type="button"
-          onClick={onClick}
-          className={`
-            w-full py-3 rounded-lg transition-all duration-500 ease-in-out font-bold transform hover:scale-105 hover:-translate-y-1 relative group
-            ${isSelected
-              ? 'bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-600 dark:to-blue-700 text-white shadow-lg dark:shadow-blue-900/30'
-              : 'bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-white hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-700 hover:text-white hover:shadow-lg dark:hover:shadow-blue-900/30'
-            }
-          `}
-          title={isSelected ? 'Vehicle already selected' : 'Select this vehicle for your shipment'}
-        >
-          {isSelected ? '✓ Selected' : 'Select'}
-        </button>
       </div>
     </div>
   );
