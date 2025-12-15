@@ -1,4 +1,4 @@
-# <div align="center"> 🚚 CargoConnect — India's Premier Logistics & Cargo Transfer Booking Platform 🚚
+# <div align="center">🚚 CargoConnect — India's Premier Logistics & Cargo Transfer Booking Platform 🚚</div>
 
 CargoConnect is a modern, responsive web application built with React and TypeScript that revolutionizes cargo transportation across India. Our platform offers seamless booking experiences with real-time pricing, multiple vehicle options, and comprehensive logistics solutions.
 
@@ -10,117 +10,189 @@ CargoConnect is a modern, responsive web application built with React and TypeSc
 - **Vehicle Selection** - Multiple vehicle categories (Mini Truck, Cargo Truck, Tempo) with detailed specifications
 - **Location Services** - State and district-based location selection across India
 - **Payment Integration** - Multiple payment methods (UPI, Net Banking, Cash on Delivery)
-- **Automated Email System** - Newsletter subscriptions and contact form emails sent to admin
-- **24/7 Email Notifications** - Works automatically even when server is not running (with Vercel deployment)
+- **PDF Receipt Generation** - Download booking receipts after payment
+- **Automated Email System** - Newsletter subscriptions and contact form emails
+- **24/7 Email Notifications** - Works automatically via Vercel Serverless Functions (no server needed!)
 
 ### 🎨 User Experience
-# CargoConnect
-
-🚚 CargoConnect — India's logistics booking demo (React + TypeScript)
-
-This repository contains a production-ready frontend (Vite + React + Tailwind) and a small Express-based backend used for sending transactional emails (newsletter + contact form). The project is documented and ready for local development or deployment to Vercel.
-
-**Highlights**
-- Multi-step booking flow, vehicle selection, and fare calculation
-- Responsive UI with dark/light themes and polished micro-interactions
-- Backend email endpoints (Express + Nodemailer) for automated notifications
-
-## Quick Links
-- Development guide: `INSTRUCTIONS.md`
-- Fast Vercel deploy: `VERCEL_QUICK_DEPLOY.md`
-
-## Tech Stack
-- Frontend: React 19, TypeScript, Vite
-- Styling: Tailwind CSS
-- Backend: Express.js (email endpoints)
-- Email: Nodemailer (Gmail SMTP)
-- Deployment: Vercel (recommended)
+- **Dark/Light Mode** - Toggle between themes with persistent preference
+- **Responsive Design** - Optimized for mobile, tablet, and desktop
+- **Smooth Animations** - Polished micro-interactions and transitions
+- **Back to Top Button** - Easy navigation on long pages
 
 ---
 
-## Quick Start (local)
+## 🛠 Tech Stack
 
-Prerequisites: Node.js v16+, npm (or yarn). A Gmail account with App Password is required for email testing.
+| Category | Technology |
+|----------|------------|
+| **Frontend** | React 18, TypeScript, Vite |
+| **Styling** | Tailwind CSS |
+| **Routing** | React Router v6 |
+| **Icons** | Lucide React |
+| **PDF** | jsPDF |
+| **Email** | Nodemailer (via Vercel Serverless Functions) |
+| **Deployment** | Vercel |
 
-1. Clone and install:
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js v16+ and npm
+- Gmail account with App Password (for email features)
+
+### Installation
 
 ```bash
-git clone <repository-url>
-cd cargo-connect
+# Clone repository
+git clone https://github.com/KGFCH2/CargoConnect.git
+cd CargoConnect
+
+# Install dependencies
 npm install
 ```
 
-2. Create your `.env` from the example (Unix/macOS) or use the Windows command:
+### Local Development
 
+**Option A: Frontend Only (No Email Features)**
 ```bash
-# Unix / macOS
+npm run dev
+# Open http://localhost:5173
+```
+
+**Option B: Full Stack (With Email Features)**
+```bash
+# Create .env file
 cp .env.example .env
+# Edit .env with your Gmail credentials
 
-# Windows (PowerShell)
-Copy-Item .env.example .env
-```
-
-3. Edit `.env` and add your Gmail credentials (use an App Password — do NOT commit `.env`):
-
-```
-EMAIL_USER=you@example.com
-EMAIL_PASSWORD=your_app_password_here
-PORT=3001
-```
-
-4. Run backend and frontend (two terminals):
-
-```bash
-# Terminal 1 - backend
+# Terminal 1: Start backend
 npm run server
 
-# Terminal 2 - frontend
+# Terminal 2: Start frontend  
 npm run dev
 ```
 
-Open http://localhost:5173
-
 ---
 
-## Project layout
+## 📁 Project Structure
 
 ```
-cargo-connect/
-├─ src/                 # React app (components, pages, context, data)
-├─ server.js            # Small Express server for emails
-├─ .env.example         # Environment variable template
-├─ package.json
-└─ README.md
+CargoConnect/
+├── src/
+│   ├── components/     # Reusable UI components
+│   ├── pages/          # Full page components
+│   ├── context/        # React Context providers
+│   ├── data/           # Static data (vehicles, states)
+│   ├── types/          # TypeScript definitions
+│   ├── App.tsx         # Main app with routes
+│   └── main.tsx        # Entry point
+│
+├── api/                # Vercel Serverless Functions
+│   ├── subscribe.js    # Newsletter endpoint
+│   ├── contact.js      # Contact form endpoint
+│   └── package.json    # Dependencies for functions
+│
+├── server.js           # Express server (local dev only)
+├── vercel.json         # Vercel configuration
+└── .env.example        # Environment template
 ```
 
-## Deployment
+---
 
-Recommended: deploy the frontend (and optionally the backend) to Vercel. See `VERCEL_QUICK_DEPLOY.md` for a 5-minute guide.
+## 🌐 Deployment (Vercel)
 
-Notes:
-- In production, set `VITE_API_URL` in your Vercel environment variables to point to your backend URL (or deploy the backend as Vercel Serverless Functions).
+### One-Click Deploy
+
+1. **Push to GitHub**
+   ```bash
+   git push origin main
+   ```
+
+2. **Deploy on Vercel**
+   - Go to [vercel.com](https://vercel.com)
+   - Import your GitHub repository
+   - Click "Deploy"
+
+3. **Add Environment Variables** (in Vercel Dashboard > Settings > Environment Variables)
+   | Variable | Value |
+   |----------|-------|
+   | `EMAIL_USER` | your-gmail@gmail.com |
+   | `EMAIL_PASSWORD` | your-16-char-app-password |
+
+4. **Redeploy** to apply environment variables
+
+### ✅ Benefits of Vercel Deployment
+- Emails work 24/7 (no server to maintain)
+- Auto-scales for traffic
+- Free tier available
+- Automatic HTTPS
 
 ---
 
-## Documentation
+## 📧 Email Configuration
 
-- `INSTRUCTIONS.md` — full setup and development guide
-- `VERCEL_QUICK_DEPLOY.md` — fast deploy instructions
+### Getting Gmail App Password
+
+1. Enable 2-Step Verification at [myaccount.google.com/security](https://myaccount.google.com/security)
+2. Go to "App passwords"
+3. Generate new password for "Mail"
+4. Copy the 16-character password (ignore spaces)
+
+### Environment Variables
+
+**For Local Development (.env file):**
+```env
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASSWORD=your-app-password
+PORT=3001
+# Leave VITE_API_URL commented out for production builds
+# VITE_API_URL=http://localhost:3001
+```
+
+**For Vercel (Dashboard > Settings > Environment Variables):**
+- `EMAIL_USER` = your-email@gmail.com
+- `EMAIL_PASSWORD` = your-app-password
+- Do NOT set `VITE_API_URL`
 
 ---
 
-## Contributing
+## 📚 Documentation
 
-1. Fork → branch → work → PR
-2. Use clear commit messages (e.g., `feat:`, `fix:`, `docs:`)
-
----
-
-## Maintainer
-
-**Babin Bid** — babinbid05@gmail.com
+| File | Description |
+|------|-------------|
+| [INSTRUCTIONS.md](INSTRUCTIONS.md) | Complete development guide |
+| [VERCEL_QUICK_DEPLOY.md](VERCEL_QUICK_DEPLOY.md) | 5-minute deploy guide |
 
 ---
 
-Made with ❤️
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m "Add amazing feature"`
+4. Push to branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
+
+---
+
+## 👤 Maintainer
+
+**Babin Bid**
+- Email: babinbid05@gmail.com
+- LinkedIn: [Babin Bid](https://www.linkedin.com/in/babin-bid-853728293/)
+- GitHub: [@KGFCH2](https://github.com/KGFCH2)
+
+---
+
+## 📝 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+<div align="center">
+  Made with ❤️ for seamless cargo transportation across India
+</div>
 
