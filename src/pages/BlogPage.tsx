@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar } from 'lucide-react';
+import AnimatedLink from '../components/AnimatedLink';
 
 interface BlogPost {
     id: number;
@@ -97,32 +98,7 @@ const BlogPage: React.FC = () => {
                 </div>
             </section>
 
-            {/* Newsletter Section */}
-            <section className="py-20 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 dark:from-blue-950 dark:via-slate-900 dark:to-slate-950 text-white">
-                <div className="container mx-auto px-6">
-                    <div className="max-w-2xl mx-auto text-center">
-                        <h2 className="text-4xl font-bold mb-6">Subscribe to Newsletter</h2>
-                        <p className="text-xl text-blue-100 dark:text-slate-300 mb-10">
-                            Get the latest logistics tips, industry insights, and exclusive offers delivered to your inbox
-                        </p>
-
-                        <form className="flex flex-col sm:flex-row gap-4">
-                            <input
-                                type="email"
-                                placeholder="your@email.com"
-                                className="flex-grow px-4 py-4 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-500"
-                                required
-                            />
-                            <button
-                                type="submit"
-                                className="px-8 py-4 bg-blue-950 hover:bg-blue-900 dark:bg-blue-900 dark:hover:bg-blue-800 text-white font-bold rounded-lg transition-all duration-500 ease-in-out hover:scale-105 hover:shadow-xl transform hover:-translate-y-1"
-                            >
-                                Subscribe
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </section>
+            {/* Newsletter removed per request */}
 
             {/* CTA Section */}
             <section className="py-20 bg-white dark:bg-slate-950 transition-colors duration-300">
@@ -131,13 +107,13 @@ const BlogPage: React.FC = () => {
                     <p className="text-lg text-slate-600 dark:text-slate-300 mb-10 max-w-2xl mx-auto">
                         Apply what you've learned and start shipping with CargoConnect today
                     </p>
-                    <Link
+                    <AnimatedLink
                         to="/book-now"
                         className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl dark:shadow-blue-900/30"
                     >
                         Book Your First Shipment
                         <span>→</span>
-                    </Link>
+                    </AnimatedLink>
                 </div>
             </section>
         </div>
