@@ -21,7 +21,7 @@ const ContactPage: React.FC = () => {
         try {
             const API_URL = import.meta.env.VITE_API_URL;
             const endpoint = API_URL ? `${API_URL}/api/contact` : '/api/contact';
-            
+
             console.log('Sending message to:', endpoint);
 
             const response = await fetch(endpoint, {
