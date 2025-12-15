@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import AnimatedLink from '../components/AnimatedLink';
 import { Zap, TrendingDown, Award } from 'lucide-react';
 
 const PricingPage: React.FC = () => {
@@ -244,13 +245,6 @@ const PricingPage: React.FC = () => {
                             <p className="text-slate-600 dark:text-slate-400 mb-6">
                                 Contact the sales team for customized pricing based on your shipping volume
                             </p>
-                            <Link
-                                to="/contact"
-                                className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl dark:shadow-blue-900/30 transform hover:scale-105 hover:-translate-y-1"
-                            >
-                                Get Custom Quote
-                                <span>→</span>
-                            </Link>
                         </div>
                     </div>
                 </div>
