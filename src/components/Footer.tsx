@@ -75,25 +75,25 @@ const Footer: React.FC = () => {
             <h3 className="text-lg font-bold mb-6">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <AnimatedLink to="/pricing" className="text-slate-400 dark:text-slate-500 hover:text-blue-400 dark:hover:text-blue-400 transition-colors font-medium group inline-flex items-center">
+                <AnimatedLink to="/pricing" showUnderline={false} className="text-slate-400 dark:text-slate-500 hover:text-blue-400 dark:hover:text-blue-400 transition-colors font-medium group inline-flex items-center">
                   <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
                   <span className="ml-2">Pricing & Rates</span>
                 </AnimatedLink>
               </li>
               <li>
-                <AnimatedLink to="/faq" className="text-slate-400 dark:text-slate-500 hover:text-blue-400 dark:hover:text-blue-400 transition-colors font-medium group inline-flex items-center">
+                <AnimatedLink to="/faq" showUnderline={false} className="text-slate-400 dark:text-slate-500 hover:text-blue-400 dark:hover:text-blue-400 transition-colors font-medium group inline-flex items-center">
                   <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
                   <span className="ml-2">FAQ</span>
                 </AnimatedLink>
               </li>
               <li>
-                <AnimatedLink to="/blog" className="text-slate-400 dark:text-slate-500 hover:text-blue-400 dark:hover:text-blue-400 transition-colors font-medium group inline-flex items-center">
+                <AnimatedLink to="/blog" showUnderline={false} className="text-slate-400 dark:text-slate-500 hover:text-blue-400 dark:hover:text-blue-400 transition-colors font-medium group inline-flex items-center">
                   <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
                   <span className="ml-2">Writeup</span>
                 </AnimatedLink>
               </li>
               <li>
-                <AnimatedLink to="/contact" className="text-slate-400 dark:text-slate-500 hover:text-blue-400 dark:hover:text-blue-400 transition-colors font-medium group inline-flex items-center">
+                <AnimatedLink to="/contact" showUnderline={false} className="text-slate-400 dark:text-slate-500 hover:text-blue-400 dark:hover:text-blue-400 transition-colors font-medium group inline-flex items-center">
                   <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
                   <span className="ml-2">Contact</span>
                 </AnimatedLink>
