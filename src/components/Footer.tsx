@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Truck, Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react';
 import Loader from './Loader';
+import AnimatedLink from './AnimatedLink';
 import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
@@ -74,28 +75,28 @@ const Footer: React.FC = () => {
             <h3 className="text-lg font-bold mb-6">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/pricing" className="text-slate-400 dark:text-slate-500 hover:text-blue-400 dark:hover:text-blue-400 transition-colors font-medium group inline-flex items-center">
+                <AnimatedLink to="/pricing" className="text-slate-400 dark:text-slate-500 hover:text-blue-400 dark:hover:text-blue-400 transition-colors font-medium group inline-flex items-center">
                   <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
                   <span className="ml-2">Pricing & Rates</span>
-                </Link>
+                </AnimatedLink>
               </li>
               <li>
-                <Link to="/faq" className="text-slate-400 dark:text-slate-500 hover:text-blue-400 dark:hover:text-blue-400 transition-colors font-medium group inline-flex items-center">
+                <AnimatedLink to="/faq" className="text-slate-400 dark:text-slate-500 hover:text-blue-400 dark:hover:text-blue-400 transition-colors font-medium group inline-flex items-center">
                   <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
                   <span className="ml-2">FAQ</span>
-                </Link>
+                </AnimatedLink>
               </li>
               <li>
-                <Link to="/blog" className="text-slate-400 dark:text-slate-500 hover:text-blue-400 dark:hover:text-blue-400 transition-colors font-medium group inline-flex items-center">
+                <AnimatedLink to="/blog" className="text-slate-400 dark:text-slate-500 hover:text-blue-400 dark:hover:text-blue-400 transition-colors font-medium group inline-flex items-center">
                   <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
                   <span className="ml-2">Writeup</span>
-                </Link>
+                </AnimatedLink>
               </li>
               <li>
-                <Link to="/contact" className="text-slate-400 dark:text-slate-500 hover:text-blue-400 dark:hover:text-blue-400 transition-colors font-medium group inline-flex items-center">
+                <AnimatedLink to="/contact" className="text-slate-400 dark:text-slate-500 hover:text-blue-400 dark:hover:text-blue-400 transition-colors font-medium group inline-flex items-center">
                   <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
                   <span className="ml-2">Contact</span>
-                </Link>
+                </AnimatedLink>
               </li>
             </ul>
           </div>
@@ -166,9 +167,9 @@ const Footer: React.FC = () => {
 
             <div className="text-center text-slate-400 dark:text-slate-500 text-sm">
               <p className="mb-2">
-                <Link to="/privacy" className="hover:text-blue-400 dark:hover:text-blue-400 transition-colors">Privacy Policy</Link>
+                <AnimatedLink to="/privacy" className="hover:text-blue-400 dark:hover:text-blue-400 transition-colors">Privacy Policy</AnimatedLink>
                 <span className="mx-2">•</span>
-                <Link to="/terms" className="hover:text-blue-400 dark:hover:text-blue-400 transition-colors">Terms of Service</Link>
+                <AnimatedLink to="/terms" className="hover:text-blue-400 dark:hover:text-blue-400 transition-colors">Terms of Service</AnimatedLink>
               </p>
               <p className="text-slate-500 dark:text-slate-600 text-sm">© 2025 CargoConnect. All rights reserved.</p>
             </div>
