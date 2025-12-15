@@ -16,6 +16,9 @@ import FAQPage from './pages/FAQPage';
 import BlogPage from './pages/BlogPage';
 import ContactPage from './pages/ContactPage';
 import AboutPage from './pages/AboutPage';
+import PrivacyPage from './pages/PrivacyPage';
+import TermsPage from './pages/TermsPage';
+import BackToTop from './components/BackToTop';
 
 function App() {
   const [initializing, setInitializing] = useState(true);
@@ -48,11 +51,14 @@ function App() {
                 <Route path="/faq" element={<FAQPage />} />
                 <Route path="/blog" element={<BlogPage />} />
                 <Route path="/contact" element={<ContactPage />} />
+                <Route path="/privacy" element={<PrivacyPage />} />
+                <Route path="/terms" element={<TermsPage />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="*" element={<HomePage />} />
               </Routes>
             </main>
             <Footer />
+            <BackToTop />
           </div>
         </Router>
       </BookingProvider>
