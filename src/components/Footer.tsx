@@ -158,25 +158,24 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="border-t border-slate-800 dark:border-slate-900 pt-8">
-          <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <div className="text-slate-400 dark:text-slate-500 text-sm hover:text-slate-300 dark:hover:text-slate-400 transition-colors duration-300">
-              <p className="font-bold text-white mb-2">Trusted By:</p>
-              <p>1000+ businesses • 50000+ happy customers • 25+ cities</p>
-            </div>
-            <div className="text-slate-400 dark:text-slate-500 text-sm text-right md:text-left hover:text-slate-300 dark:hover:text-slate-400 transition-colors duration-300">
+          <div className="grid md:grid-cols-3 gap-6 mb-6 items-center">
+            <div className="text-center text-slate-400 dark:text-slate-500 text-sm">
               <p className="font-bold text-white mb-2">Our Promise:</p>
               <p>Transparent pricing • Safe transport • Professional service • 24/7 support</p>
             </div>
-          </div>
 
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-slate-500 dark:text-slate-600 text-sm">
-              &copy; {new Date().getFullYear()} CargoConnect. All rights reserved.
-            </p>
-            <div className="flex gap-6 text-sm text-slate-500 dark:text-slate-600">
-              <a href="#" className="hover:text-blue-400 dark:hover:text-blue-400 transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-blue-400 dark:hover:text-blue-400 transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-blue-400 dark:hover:text-blue-400 transition-colors">Contact</a>
+            <div className="text-center text-slate-400 dark:text-slate-500 text-sm">
+              <p className="mb-2">
+                <Link to="/privacy" className="hover:text-blue-400 dark:hover:text-blue-400 transition-colors">Privacy Policy</Link>
+                <span className="mx-2">•</span>
+                <Link to="/terms" className="hover:text-blue-400 dark:hover:text-blue-400 transition-colors">Terms of Service</Link>
+              </p>
+              <p className="text-slate-500 dark:text-slate-600 text-sm">© 2025 CargoConnect. All rights reserved.</p>
+            </div>
+
+            <div className="text-center text-slate-400 dark:text-slate-500 text-sm">
+              <p className="font-bold text-white mb-2">Trusted By:</p>
+              <p>1000+ businesses • 50000+ happy customers • 25+ cities</p>
             </div>
           </div>
         </div>
