@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
       // If API_URL is set (e.g. to localhost), use it. Otherwise use relative path.
       // On Vercel, VITE_API_URL should be empty or the production URL.
       const endpoint = API_URL ? `${API_URL}/api/subscribe` : '/api/subscribe';
-      
+
       console.log('Subscribing to:', endpoint);
 
       const response = await fetch(endpoint, {
