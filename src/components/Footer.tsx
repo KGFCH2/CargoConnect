@@ -15,7 +15,12 @@ const Footer: React.FC = () => {
 
     try {
       const API_URL = import.meta.env.VITE_API_URL;
+      // If API_URL is set (e.g. to localhost), use it. Otherwise use relative path.
+      // On Vercel, VITE_API_URL should be empty or the production URL.
       const endpoint = API_URL ? `${API_URL}/api/subscribe` : '/api/subscribe';
+      
+      console.log('Subscribing to:', endpoint);
+
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
@@ -24,17 +29,27 @@ const Footer: React.FC = () => {
         body: JSON.stringify({ email })
       });
 
-      const data = await response.json();
+      const contentType = response.headers.get("content-type");
+      let data;
+      if (contentType && contentType.indexOf("application/json") !== -1) {
+        data = await response.json();
+      } else {
+        // Handle non-JSON response (e.g. 404/500 HTML page)
+        const text = await response.text();
+        console.error('Non-JSON response:', text);
+        throw new Error(`Server returned ${response.status}: ${response.statusText}`);
+      }
 
       if (response.ok) {
         setSubscribeMessage(data.message);
         setEmail('');
         setTimeout(() => setSubscribeMessage(''), 5000);
       } else {
-        setSubscribeMessage(data.error || 'Subscription failed');
+        setSubscribeMessage(data.error || `Subscription failed: ${response.status}`);
       }
-    } catch (error) {
-      setSubscribeMessage('Failed to connect to server. Make sure the backend is running.');
+    } catch (error: any) {
+      console.error('Subscription error:', error);
+      setSubscribeMessage(error.message || 'Failed to connect to server.');
     } finally {
       setIsSubscribing(false);
     }
