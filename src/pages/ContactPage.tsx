@@ -21,6 +21,9 @@ const ContactPage: React.FC = () => {
         try {
             const API_URL = import.meta.env.VITE_API_URL;
             const endpoint = API_URL ? `${API_URL}/api/contact` : '/api/contact';
+            
+            console.log('Sending message to:', endpoint);
+
             const response = await fetch(endpoint, {
                 method: 'POST',
                 headers: {
@@ -29,17 +32,26 @@ const ContactPage: React.FC = () => {
                 body: JSON.stringify(formData)
             });
 
-            const data = await response.json();
+            const contentType = response.headers.get("content-type");
+            let data;
+            if (contentType && contentType.indexOf("application/json") !== -1) {
+                data = await response.json();
+            } else {
+                const text = await response.text();
+                console.error('Non-JSON response:', text);
+                throw new Error(`Server returned ${response.status}: ${response.statusText}`);
+            }
 
             if (response.ok) {
                 setSubmitMessage(data.message);
                 setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
                 setTimeout(() => setSubmitMessage(''), 5000);
             } else {
-                setSubmitMessage(data.error || 'Failed to send message');
+                setSubmitMessage(data.error || `Failed to send message: ${response.status}`);
             }
-        } catch (error) {
-            setSubmitMessage('Failed to connect to server. Make sure the backend is running.');
+        } catch (error: any) {
+            console.error('Contact form error:', error);
+            setSubmitMessage(error.message || 'Failed to connect to server.');
         } finally {
             setIsSubmitting(false);
         }

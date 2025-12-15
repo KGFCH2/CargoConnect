@@ -83,9 +83,9 @@ export default async function handler(req, res) {
         await transporter.sendMail(adminMail);
         await transporter.sendMail(userMail);
 
-        return res.status(200).json({ message: 'Message sent successfully' });
+        res.status(200).json({ message: 'Message sent successfully' });
     } catch (err) {
         console.error('contact error', err);
-        return res.status(500).json({ error: 'Failed to send contact email' });
+        res.status(500).json({ error: 'Failed to send contact email' });
     }
 }
