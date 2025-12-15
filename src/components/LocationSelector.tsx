@@ -25,14 +25,28 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({
     : [];
 
   useEffect(() => {
-    if (selectedState && selectedDistrict && (place || useFullAddress)) {
-      const location: Location = {
-        state: selectedState,
-        district: selectedDistrict,
-        place: useFullAddress ? undefined : place,
-        fullAddress: useFullAddress ? fullAddress : undefined
-      };
-      onLocationSelect(location);
+    if (useFullAddress) {
+      // For full address, only require the full address field to have content
+      if (fullAddress && fullAddress.trim().length > 0) {
+        const location: Location = {
+          state: 'Full Address',
+          district: 'Full Address',
+          place: undefined,
+          fullAddress: fullAddress
+        };
+        onLocationSelect(location);
+      }
+    } else {
+      // For state & district mode, need all three fields
+      if (selectedState && selectedDistrict && place) {
+        const location: Location = {
+          state: selectedState,
+          district: selectedDistrict,
+          place: place,
+          fullAddress: undefined
+        };
+        onLocationSelect(location);
+      }
     }
   }, [selectedState, selectedDistrict, place, fullAddress, useFullAddress, onLocationSelect]);
 
