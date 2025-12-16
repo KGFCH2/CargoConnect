@@ -25,7 +25,7 @@ const VehicleCard: React.FC<VehicleCardProps> = ({
       `}
       onClick={onClick}
     >
-      <div className="h-48 overflow-hidden relative bg-slate-100 dark:bg-slate-700">
+      <div className="h-40 sm:h-48 md:h-56 overflow-hidden relative bg-slate-100 dark:bg-slate-700">
         <img
           src={vehicle.image}
           alt={vehicle.name}
@@ -38,8 +38,8 @@ const VehicleCard: React.FC<VehicleCardProps> = ({
         )}
       </div>
 
-      <div className="p-6">
-        <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">{vehicle.name}</h3>
+      <div className="p-4 sm:p-6">
+        <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-3 sm:mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">{vehicle.name}</h3>
 
         <div className="space-y-3 mb-6">
           <div className="flex items-center text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors duration-300">
