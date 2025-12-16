@@ -347,10 +347,10 @@ const BookingPage: React.FC = () => {
           </div>
         </div>
       )}
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-slate-900 dark:text-white mb-4">Complete Your Booking</h1>
-          <p className="text-lg text-slate-600 dark:text-slate-400">Four simple steps to book your transportation</p>
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-8 sm:mb-12">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4">Complete Your Booking</h1>
+          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">Four simple steps to book your transportation</p>
         </div>
 
         {/* Steps Progress */}
@@ -360,7 +360,7 @@ const BookingPage: React.FC = () => {
               <div key={step} className="flex flex-col items-center flex-1">
                 <div
                   className={`
-                    w-14 h-14 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-300 transform
+                    w-12 sm:w-14 h-12 sm:h-14 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-300 transform
                     ${currentStep > step
                       ? 'bg-gradient-to-br from-green-400 to-green-600 dark:from-green-500 dark:to-green-600 text-white shadow-lg hover:scale-110'
                       : currentStep === step
@@ -372,7 +372,7 @@ const BookingPage: React.FC = () => {
                 </div>
                 <span
                   className={`
-                    text-sm font-semibold mt-3 hidden sm:block transition-colors duration-300
+                    text-sm font-semibold mt-2 sm:mt-3 block sm:block text-center transition-colors duration-300
                     ${currentStep >= step ? 'text-slate-900 dark:text-white' : 'text-slate-500 dark:text-slate-500'}
                   `}
                 >
@@ -393,7 +393,7 @@ const BookingPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="max-w-3xl mx-auto bg-white dark:bg-slate-800 rounded-2xl shadow-xl dark:shadow-slate-900 p-8 border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+        <div className="max-w-3xl mx-auto bg-white dark:bg-slate-800 rounded-2xl shadow-xl dark:shadow-slate-900 p-6 sm:p-8 border border-slate-200 dark:border-slate-700 transition-colors duration-300">
           <div className={`transition-all duration-500 ease-out transform will-change-transform ${isTransitioning ? 'opacity-0 -translate-y-4' : 'opacity-100 translate-y-0'}`}>
             {/* Step 1: Pickup Location */}
             {currentStep === 1 && (
@@ -542,10 +542,10 @@ const BookingPage: React.FC = () => {
           </div>
 
           {/* Navigation Buttons */}
-          <div className="mt-10 flex justify-between gap-4">
+          <div className="mt-10 flex flex-col-reverse sm:flex-row justify-between gap-4">
             <button
               onClick={handlePrevStep}
-              className={`px-8 py-3 font-bold rounded-lg transition-all duration-500 ease-in-out transform relative group ${currentStep === 1
+              className={`w-full sm:w-auto px-8 py-3 font-bold rounded-lg transition-all duration-500 ease-in-out transform relative group ${currentStep === 1
                 ? 'invisible'
                 : 'bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-white hover:bg-slate-300 dark:hover:bg-slate-600 hover:scale-105 hover:-translate-y-1'
                 }`}
@@ -558,7 +558,7 @@ const BookingPage: React.FC = () => {
               onClick={handleNextStep}
               disabled={!isCurrentStepComplete()}
               className={`
-                px-8 py-3 font-bold rounded-lg flex items-center gap-2 transition-all duration-500 ease-in-out transform relative group
+                w-full sm:w-auto px-8 py-3 font-bold rounded-lg flex items-center gap-2 transition-all duration-500 ease-in-out transform relative group
                 ${isCurrentStepComplete()
                   ? 'bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-600 dark:to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 dark:hover:from-blue-700 dark:hover:to-blue-800 shadow-lg hover:shadow-xl hover:scale-105 hover:-translate-y-1'
                   : 'bg-slate-300 dark:bg-slate-600 text-slate-500 dark:text-slate-400 cursor-not-allowed'}
