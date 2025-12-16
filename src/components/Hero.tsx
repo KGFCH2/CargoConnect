@@ -8,7 +8,7 @@ import Loader from './Loader';
 
 const Hero: React.FC = () => {
   return (
-    <div className="relative min-h-screen flex items-center pt-20">
+    <div className="relative min-h-[70vh] md:min-h-screen flex items-center pt-16 md:pt-20">
       {/* Background Image with Overlay */}
       <div
         className="absolute inset-0 bg-cover bg-center"
@@ -19,7 +19,7 @@ const Hero: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-blue-950/95 via-blue-900/90 to-slate-900/85" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 py-16">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 py-12 sm:py-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="text-white">
             <div className="mb-6">
@@ -27,25 +27,25 @@ const Hero: React.FC = () => {
                 ✨ India's #1 Logistics Solution
               </span>
             </div>
-            <h1 className="text-5xl lg:text-6xl font-bold leading-tight mb-6 tracking-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight mb-6 tracking-tight">
               Your Trusted <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Logistics Partner</span>
             </h1>
-            <p className="text-lg lg:text-xl text-blue-100 mb-10 leading-relaxed max-w-xl">
+            <p className="text-base sm:text-lg lg:text-xl text-blue-100 mb-8 sm:mb-10 leading-relaxed max-w-xl">
               Experience seamless cargo transportation across India with our reliable vehicle, competitive pricing, and dedicated customer support. Book instantly, pay securely, deliver confidently.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-14">
+            <div className="flex flex-col sm:flex-row gap-4 mb-10 sm:mb-14">
               <AnimatedLink
                 to="/book-now"
                 showUnderline={false}
-                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 text-center shadow-lg hover:shadow-xl transform hover:scale-105"
+                className="w-full sm:w-auto inline-flex justify-center bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3.5 px-6 sm:py-4 sm:px-8 rounded-lg transition-all duration-300 text-center shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 Start Booking
               </AnimatedLink>
               <AnimatedLink
                 to="/vehicles"
                 showUnderline={false}
-                className="bg-white/10 backdrop-blur hover:bg-white/20 border-2 border-white/30 hover:border-white/50 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 text-center"
+                className="w-full sm:w-auto inline-flex justify-center bg-white/10 backdrop-blur hover:bg-white/20 border-2 border-white/30 hover:border-white/50 text-white font-semibold py-3.5 px-6 sm:py-4 sm:px-8 rounded-lg transition-all duration-300 text-center"
               >
                 Explore Vehicles
               </AnimatedLink>
