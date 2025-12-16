@@ -56,7 +56,7 @@ const Footer: React.FC = () => {
   };
   return (
     <footer className="bg-gradient-to-b from-slate-900 dark:from-slate-950 to-black dark:to-black text-white pt-16 pb-8 border-t border-slate-800 dark:border-slate-900 transition-colors duration-300">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Company Info */}
           <div className="group">
