@@ -9,10 +9,10 @@ const VehiclesPage: React.FC = () => {
         <div className="bg-white dark:bg-slate-950 transition-colors duration-300">
             {/* Hero Section */}
             <section className="pt-32 pb-16 bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 dark:from-blue-950 dark:via-slate-900 dark:to-slate-950 text-white">
-                <div className="container mx-auto px-6">
+                <div className="container mx-auto px-4 sm:px-6">
                     <div className="max-w-3xl">
-                        <h1 className="text-5xl font-bold mb-6">Vehicle</h1>
-                        <p className="text-xl text-blue-100">
+                        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">Vehicle</h1>
+                        <p className="text-base sm:text-xl text-blue-100">
                             Wide range of modern, well-maintained vehicles to handle all your cargo transportation needs
                         </p>
                     </div>
@@ -21,7 +21,7 @@ const VehiclesPage: React.FC = () => {
 
             {/* Vehicle Stats */}
             <section className="py-16 bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
-                <div className="container mx-auto px-6">
+                <div className="container mx-auto px-4 sm:px-6">
                     <div className="grid md:grid-cols-4 gap-8">
                         <div className="text-center">
                             <div className="text-4xl font-bold text-blue-700 dark:text-blue-400 mb-2">500+</div>
@@ -53,7 +53,7 @@ const VehiclesPage: React.FC = () => {
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-7">
+                    <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7">
                         {vehicles.map((vehicle) => (
                             <VehicleCard key={vehicle.id} vehicle={vehicle} />
                         ))}
