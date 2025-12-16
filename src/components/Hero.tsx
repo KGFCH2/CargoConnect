@@ -37,12 +37,14 @@ const Hero: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4 mb-14">
               <AnimatedLink
                 to="/book-now"
+                showUnderline={false}
                 className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 text-center shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 Start Booking
               </AnimatedLink>
               <AnimatedLink
                 to="/vehicles"
+                showUnderline={false}
                 className="bg-white/10 backdrop-blur hover:bg-white/20 border-2 border-white/30 hover:border-white/50 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 text-center"
               >
                 Explore Vehicles
