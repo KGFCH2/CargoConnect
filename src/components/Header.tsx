@@ -25,7 +25,7 @@ const Header: React.FC = () => {
         : 'bg-gradient-to-b from-black/30 to-transparent dark:from-slate-950/50 py-6'
         }`}
     >
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 group">
             <div
