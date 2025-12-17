@@ -62,7 +62,7 @@ const PaymentOption: React.FC<PaymentOptionProps> = ({
 const PaymentMethods: React.FC<PaymentMethodsProps> = ({ selectedMethod, onSelect }) => {
   return (
     <div className="space-y-4">
-      <h2 className="text-xl font-semibold text-gray-900 mb-4 animate-slide-in-from-top-4">Select Payment Method</h2>
+      <h2 className="text-xl font-semibold text-black dark:text-white mb-4 animate-slide-in-from-top-4">Select Payment Method</h2>
 
       <PaymentOption
         id="card"
