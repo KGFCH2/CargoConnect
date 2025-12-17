@@ -2,9 +2,20 @@ import React from 'react';
 import { Truck, Package, Users, Zap } from 'lucide-react';
 import { vehicles } from '../data/vehicles';
 import VehicleCard from '../components/VehicleCard';
+import Portal from '../components/Portal';
 import { Link } from 'react-router-dom';
 
 const VehiclesPage: React.FC = () => {
+    const [lightboxImage, setLightboxImage] = React.useState<string | null>(null);
+
+    React.useEffect(() => {
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') setLightboxImage(null);
+        };
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+    }, []);
+
     return (
         <div className="bg-white dark:bg-slate-950 transition-colors duration-300">
             {/* Hero Section */}
@@ -23,21 +34,21 @@ const VehiclesPage: React.FC = () => {
             <section className="py-16 bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
                 <div className="container mx-auto px-4 sm:px-6">
                     <div className="grid md:grid-cols-4 gap-8">
-                        <div className="text-center">
-                            <div className="text-4xl font-bold text-blue-700 dark:text-blue-400 mb-2">500+</div>
-                            <p className="text-slate-600 dark:text-slate-400 font-medium">Vehicles in Vehicle</p>
+                        <div className="text-center group cursor-pointer transition-transform duration-300">
+                            <div className="text-4xl font-bold text-blue-700 dark:text-blue-400 mb-2 transition-all duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:text-blue-800 dark:group-hover:text-blue-300">500+</div>
+                            <p className="text-slate-600 dark:text-slate-400 font-medium transition-colors duration-300 group-hover:text-slate-900 dark:group-hover:text-white group-hover:font-semibold">Vehicles in Vehicle</p>
                         </div>
-                        <div className="text-center">
-                            <div className="text-4xl font-bold text-blue-700 dark:text-blue-400 mb-2">99.9%</div>
-                            <p className="text-slate-600 dark:text-slate-400 font-medium">On-Time Delivery</p>
+                        <div className="text-center group cursor-pointer transition-transform duration-300">
+                            <div className="text-4xl font-bold text-blue-700 dark:text-blue-400 mb-2 transition-all duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:text-blue-800 dark:group-hover:text-blue-300">99.9%</div>
+                            <p className="text-slate-600 dark:text-slate-400 font-medium transition-colors duration-300 group-hover:text-slate-900 dark:group-hover:text-white group-hover:font-semibold">On-Time Delivery</p>
                         </div>
-                        <div className="text-center">
-                            <div className="text-4xl font-bold text-blue-700 dark:text-blue-400 mb-2">25+</div>
-                            <p className="text-slate-600 dark:text-slate-400 font-medium">Cities Covered</p>
+                        <div className="text-center group cursor-pointer transition-transform duration-300">
+                            <div className="text-4xl font-bold text-blue-700 dark:text-blue-400 mb-2 transition-all duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:text-blue-800 dark:group-hover:text-blue-300">25+</div>
+                            <p className="text-slate-600 dark:text-slate-400 font-medium transition-colors duration-300 group-hover:text-slate-900 dark:group-hover:text-white group-hover:font-semibold">Cities Covered</p>
                         </div>
-                        <div className="text-center">
-                            <div className="text-4xl font-bold text-blue-700 dark:text-blue-400 mb-2">50K+</div>
-                            <p className="text-slate-600 dark:text-slate-400 font-medium">Happy Customers</p>
+                        <div className="text-center group cursor-pointer transition-transform duration-300">
+                            <div className="text-4xl font-bold text-blue-700 dark:text-blue-400 mb-2 transition-all duration-300 transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:text-blue-800 dark:group-hover:text-blue-300">50K+</div>
+                            <p className="text-slate-600 dark:text-slate-400 font-medium transition-colors duration-300 group-hover:text-slate-900 dark:group-hover:text-white group-hover:font-semibold">Happy Customers</p>
                         </div>
                     </div>
                 </div>
@@ -55,9 +66,39 @@ const VehiclesPage: React.FC = () => {
 
                     <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7">
                         {vehicles.map((vehicle) => (
-                            <VehicleCard key={vehicle.id} vehicle={vehicle} />
+                            <VehicleCard
+                                key={vehicle.id}
+                                vehicle={vehicle}
+                                onClick={() => setLightboxImage(vehicle.image)}
+                            />
                         ))}
                     </div>
+
+                    {/* Lightbox modal for full-size vehicle images */}
+                    {lightboxImage && (
+                        <Portal>
+                            <div
+                                className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+                                onClick={() => setLightboxImage(null)}
+                            >
+                                <div className="relative max-w-6xl w-full">
+                                    <button
+                                        onClick={(e) => { e.stopPropagation(); setLightboxImage(null); }}
+                                        className="absolute top-2 right-2 z-50 bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white rounded-full p-2 shadow-lg hover:scale-105 transition-transform"
+                                        aria-label="Close image"
+                                    >
+                                        ✕
+                                    </button>
+                                    <img
+                                        src={lightboxImage}
+                                        alt="Vehicle full"
+                                        onClick={(e) => e.stopPropagation()}
+                                        className="mx-auto w-full h-auto max-h-[90vh] object-contain"
+                                    />
+                                </div>
+                            </div>
+                        </Portal>
+                    )}
                 </div>
             </section>
 
