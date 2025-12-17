@@ -83,56 +83,66 @@ const PricingPage: React.FC = () => {
             <section className="py-20 bg-white dark:bg-slate-950 transition-colors duration-300">
                 <div className="container mx-auto px-6">
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {pricingPlans.map((plan, idx) => (
-                            <div
-                                key={idx}
-                                className={`rounded-2xl overflow-hidden transition-all duration-500 ease-in-out transform hover:scale-105 hover:-translate-y-2 hover:shadow-2xl group cursor-pointer ${plan.popular
-                                    ? 'border-2 border-blue-600 dark:border-blue-500 shadow-2xl dark:shadow-blue-900/30 transform lg:scale-105 bg-gradient-to-br from-white dark:from-slate-800 to-blue-50 dark:to-slate-900'
-                                    : 'border-2 border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-2xl hover:border-blue-400 dark:hover:border-blue-600 bg-white dark:bg-slate-800'
-                                    }`}
-                            >
-                                {plan.popular && (
-                                    <div className="bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-600 dark:to-blue-700 text-white py-2 text-center font-bold">
-                                        Most Popular
+                        {pricingPlans.map((plan, idx) => {
+                            const disabled = ['Mini Tempo', 'Standard Tempo', 'Mini Truck', 'Cargo Truck'].includes(plan.name);
+                            return (
+                                <div
+                                    key={idx}
+                                    className={`rounded-2xl overflow-hidden transition-all duration-500 ease-in-out transform hover:scale-105 hover:-translate-y-2 hover:shadow-2xl group cursor-pointer ${plan.popular
+                                        ? 'border-2 border-blue-600 dark:border-blue-500 shadow-2xl dark:shadow-blue-900/30 transform lg:scale-105 bg-gradient-to-br from-white dark:from-slate-800 to-blue-50 dark:to-slate-900'
+                                        : 'border-2 border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-2xl hover:border-blue-400 dark:hover:border-blue-600 bg-white dark:bg-slate-800'
+                                        }`}
+                                >
+                                    {plan.popular && (
+                                        <div className="bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-600 dark:to-blue-700 text-white py-2 text-center font-bold">
+                                            Most Popular
+                                        </div>
+                                    )}
+
+                                    <div className="p-8">
+                                        <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors duration-300">{plan.name}</h3>
+                                        <p className="text-slate-600 dark:text-slate-400 mb-6 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors duration-300">{plan.capacity}</p>
+
+                                        <div className="mb-6 pb-6 border-b border-slate-200 dark:border-slate-600">
+                                            <div className="text-sm text-slate-600 dark:text-slate-400 mb-1">From</div>
+                                            <div className="text-4xl font-bold text-blue-700 dark:text-blue-400 mb-2 group-hover:text-blue-800 dark:group-hover:text-blue-300 transition-colors duration-300">{plan.basePrice}</div>
+                                            <div className="text-sm text-slate-600 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors duration-300">+ {plan.perKm} per km</div>
+                                        </div>
+
+                                        <ul className="space-y-3 mb-8">
+                                            {plan.features.map((feature, fidx) => (
+                                                <li key={fidx} className="flex items-center gap-3">
+                                                    <div className="w-5 h-5 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-200 dark:group-hover:bg-blue-800/40 transition-colors duration-300">
+                                                        <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full group-hover:scale-110 transition-transform duration-300"></div>
+                                                    </div>
+                                                    <span className="text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors duration-300">{feature}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+
+                                        {disabled ? (
+                                            <div className={`w-full py-3 rounded-lg font-bold transition-all duration-500 ease-in-out transform relative text-center cursor-not-allowed ${selectedPlan === idx
+                                                ? 'bg-gradient-to-r from-green-600 to-green-700 text-white'
+                                                : plan.popular
+                                                    ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white opacity-80'
+                                                    : 'bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 opacity-80'
+                                                }`} title="Selection disabled">
+                                                {selectedPlan === idx ? '✓ Selected' : plan.popular ? 'Choose Plan' : 'Select'}
+                                            </div>
+                                        ) : (
+                                            <button onClick={() => setSelectedPlan(idx)} className={`w-full py-3 rounded-lg font-bold transition-all duration-500 ease-in-out transform hover:scale-105 hover:-translate-y-1 relative group ${selectedPlan === idx
+                                                ? 'bg-gradient-to-r from-green-600 to-green-700 text-white hover:from-green-700 hover:to-green-800 shadow-lg'
+                                                : plan.popular
+                                                    ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 shadow-lg hover:shadow-xl'
+                                                    : 'bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:text-blue-700 dark:hover:text-blue-300 hover:shadow-lg dark:hover:shadow-blue-900/20'
+                                                }`} title={selectedPlan === idx ? 'Plan already selected' : `Select ${plan.name} plan`}>
+                                                {selectedPlan === idx ? '✓ Selected' : plan.popular ? 'Choose Plan' : 'Select'}
+                                            </button>
+                                        )}
                                     </div>
-                                )}
-
-                                <div className="p-8">
-                                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors duration-300">{plan.name}</h3>
-                                    <p className="text-slate-600 dark:text-slate-400 mb-6 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors duration-300">{plan.capacity}</p>
-
-                                    <div className="mb-6 pb-6 border-b border-slate-200 dark:border-slate-600">
-                                        <div className="text-sm text-slate-600 dark:text-slate-400 mb-1">From</div>
-                                        <div className="text-4xl font-bold text-blue-700 dark:text-blue-400 mb-2 group-hover:text-blue-800 dark:group-hover:text-blue-300 transition-colors duration-300">{plan.basePrice}</div>
-                                        <div className="text-sm text-slate-600 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors duration-300">+ {plan.perKm} per km</div>
-                                    </div>
-
-                                    <ul className="space-y-3 mb-8">
-                                        {plan.features.map((feature, fidx) => (
-                                            <li key={fidx} className="flex items-center gap-3">
-                                                <div className="w-5 h-5 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-200 dark:group-hover:bg-blue-800/40 transition-colors duration-300">
-                                                    <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full group-hover:scale-110 transition-transform duration-300"></div>
-                                                </div>
-                                                <span className="text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors duration-300">{feature}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-
-                                    <button
-                                        onClick={() => setSelectedPlan(idx)}
-                                        className={`w-full py-3 rounded-lg font-bold transition-all duration-500 ease-in-out transform hover:scale-105 hover:-translate-y-1 relative group ${selectedPlan === idx
-                                            ? 'bg-gradient-to-r from-green-600 to-green-700 text-white hover:from-green-700 hover:to-green-800 shadow-lg'
-                                            : plan.popular
-                                                ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 shadow-lg hover:shadow-xl'
-                                                : 'bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-200 hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:text-blue-700 dark:hover:text-blue-300 hover:shadow-lg dark:hover:shadow-blue-900/20'
-                                            }`}
-                                        title={selectedPlan === idx ? 'Plan already selected' : `Select ${plan.name} plan`}
-                                    >
-                                        {selectedPlan === idx ? '✓ Selected' : plan.popular ? 'Choose Plan' : 'Select'}
-                                    </button>
                                 </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </section>
