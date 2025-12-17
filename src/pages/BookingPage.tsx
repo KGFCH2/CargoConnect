@@ -6,6 +6,7 @@ import VehicleCard from '../components/VehicleCard';
 import PaymentMethods from '../components/PaymentMethods';
 import { vehicles } from '../data/vehicles';
 import { MapPin, TruckIcon, IndianRupee, ArrowRight, CheckCircle } from 'lucide-react';
+import OverlayLoader from '../components/OverlayLoader';
 import { jsPDF } from 'jspdf';
 import Loader from '../components/Loader';
 
@@ -324,18 +325,9 @@ const BookingPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 pt-28 pb-16 transition-colors duration-300">
-      {isTransitioning && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-          <Loader size={36} label="Loading..." />
-        </div>
-      )}
+      {isTransitioning && <OverlayLoader size={36} label="Loading..." backdropClassName="bg-black/40" />}
       {isProcessingPayment && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-          <div className="bg-white/10 backdrop-blur-md rounded-lg p-6 flex flex-col items-center gap-4">
-            <Loader size={48} label="Processing payment..." />
-            <div className="text-white text-sm">Please wait while we confirm your payment.</div>
-          </div>
-        </div>
+        <OverlayLoader size={48} label="Processing payment..." backdropClassName="bg-black/50" />
       )}
       {showSuccessAnim && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
