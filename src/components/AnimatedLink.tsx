@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Portal from './Portal';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 interface AnimatedLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
@@ -88,16 +89,18 @@ const AnimatedLink: React.FC<AnimatedLinkProps> = ({ to, delay = 200, showLoader
             </div>
 
             {isAnimating && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-                    <div className="flex flex-col items-center gap-6">
-                        {/* Animated circles */}
-                        <div className="relative w-20 h-20">
-                            <div className="absolute inset-0 rounded-full border-4 border-white/30 animate-pulse"></div>
-                            <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-blue-400 border-r-blue-400 animate-spin"></div>
-                            <div className="absolute inset-2 rounded-full border-4 border-transparent border-b-cyan-400 animate-spin" style={{ animationDirection: 'reverse', animationDuration: '1.5s' }}></div>
+                <Portal>
+                    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+                        <div className="flex flex-col items-center gap-6">
+                            {/* Animated circles */}
+                            <div className="relative w-20 h-20">
+                                <div className="absolute inset-0 rounded-full border-4 border-white/30 animate-pulse"></div>
+                                <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-blue-400 border-r-blue-400 animate-spin"></div>
+                                <div className="absolute inset-2 rounded-full border-4 border-transparent border-b-cyan-400 animate-spin" style={{ animationDirection: 'reverse', animationDuration: '1.5s' }}></div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </Portal>
             )}
         </>
     );
