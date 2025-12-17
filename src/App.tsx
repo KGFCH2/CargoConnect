@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import Loader from './components/Loader';
+import OverlayLoader from './components/OverlayLoader';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { BookingProvider } from './context/BookingContext';
 import { ThemeProvider } from './context/ThemeContext';
@@ -31,13 +32,7 @@ function App() {
     <ThemeProvider>
       <BookingProvider>
         <Router>
-          {initializing && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/95 dark:bg-slate-950/95">
-              <div className="text-center">
-                <Loader size={28} label="Initializing CargoConnect..." />
-              </div>
-            </div>
-          )}
+          {initializing && <OverlayLoader size={28} label="Initializing CargoConnect..." backdropClassName="bg-white/95 dark:bg-slate-950/95" />}
           <ScrollToTop />
           <div className="flex flex-col min-h-screen bg-white dark:bg-slate-950 transition-colors duration-300">
             <Header />
