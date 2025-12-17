@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useBooking } from '../context/BookingContext';
 import { useLocation } from 'react-router-dom';
 import LocationSelector from '../components/LocationSelector';
@@ -21,6 +21,7 @@ const BookingPage: React.FC = () => {
   const [isProcessingPayment, setIsProcessingPayment] = useState<boolean>(false);
   const [transactionId, setTransactionId] = useState<string>('');
   const [showSuccessAnim, setShowSuccessAnim] = useState<boolean>(false);
+  const bookingTopRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     // If URL contains ?step=X, set initial step accordingly and show loader briefly
@@ -56,6 +57,8 @@ const BookingPage: React.FC = () => {
       setTimeout(() => {
         setCurrentStep(currentStep + 1);
         setIsTransitioning(false);
+        // ensure the booking box is scrolled to its top when moving steps
+        setTimeout(() => bookingTopRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 30);
       }, 350);
       return;
     }
@@ -92,6 +95,8 @@ const BookingPage: React.FC = () => {
       setTimeout(() => {
         setCurrentStep(currentStep - 1);
         setIsTransitioning(false);
+        // scroll up to the top of the booking section when going back a step
+        setTimeout(() => bookingTopRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 30);
       }, 300);
     }
   };
@@ -106,11 +111,17 @@ const BookingPage: React.FC = () => {
   };
 
   const isCurrentStepComplete = () => {
+    const isValidLocation = (loc: typeof state.pickup | null) => {
+      if (!loc) return false;
+      // require state, district and a full address to proceed
+      return Boolean(loc.state && loc.district && loc.fullAddress && loc.fullAddress.trim().length > 0);
+    };
+
     switch (currentStep) {
       case 1:
-        return state.pickup !== null;
+        return isValidLocation(state.pickup);
       case 2:
-        return state.dropoff !== null;
+        return isValidLocation(state.dropoff);
       case 3:
         return state.selectedVehicle !== null;
       case 4:
@@ -202,7 +213,7 @@ const BookingPage: React.FC = () => {
               >
                 Back to Home
               </button>
-              {transactionId && (
+              {(transactionId || state.paymentMethod === 'cash') && (
                 <button
                   onClick={() => {
                     // Generate a PDF receipt using jsPDF
@@ -232,7 +243,7 @@ const BookingPage: React.FC = () => {
                         y += 20;
                         doc.text(`Booking ID: ${bookingId}`, margin, y);
                         y += 20;
-                        doc.text(`Transaction ID: ${transactionId}`, margin, y);
+                        doc.text(`Transaction ID: ${transactionId || 'N/A'}`, margin, y);
 
                         y += 40;
 
@@ -266,7 +277,7 @@ const BookingPage: React.FC = () => {
                         addRow('Pickup Location', state.pickup?.fullAddress || state.pickup?.place || '-');
                         addRow('Dropoff Location', state.dropoff?.fullAddress || state.dropoff?.place || '-');
                         addRow('Total Distance', `${state.distance} km`);
-                        addRow('Payment Method', state.paymentMethod?.toUpperCase() || '-');
+                        addRow('Payment Method', state.paymentMethod === 'cash' ? 'Cash on Delivery' : (state.paymentMethod?.toUpperCase() || '-'));
 
                         y += 20;
 
@@ -385,7 +396,7 @@ const BookingPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="max-w-3xl mx-auto bg-white dark:bg-slate-800 rounded-2xl shadow-xl dark:shadow-slate-900 p-6 sm:p-8 border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+        <div ref={bookingTopRef} className="max-w-3xl mx-auto bg-white dark:bg-slate-800 rounded-2xl shadow-xl dark:shadow-slate-900 p-6 sm:p-8 border border-slate-200 dark:border-slate-700 transition-colors duration-300">
           <div className={`transition-all duration-500 ease-out transform will-change-transform ${isTransitioning ? 'opacity-0 -translate-y-4' : 'opacity-100 translate-y-0'}`}>
             {/* Step 1: Pickup Location */}
             {currentStep === 1 && (
@@ -486,7 +497,7 @@ const BookingPage: React.FC = () => {
                   <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mr-4">
                     <IndianRupee size={24} className="text-blue-600 dark:text-blue-400" />
                   </div>
-                  <span>Select payment method</span>
+                  <span className="text-black dark:text-white">Select payment method</span>
                   <div className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-500 dark:to-blue-300 rounded animate-underline"></div>
                 </h2>
 
