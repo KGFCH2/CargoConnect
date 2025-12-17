@@ -43,8 +43,8 @@ const Header: React.FC = () => {
             <div>
               <span
                 className={`text-lg font-bold tracking-tight transition-colors duration-300 ${isScrolled
-                  ? 'text-slate-900 dark:text-white'
-                  : 'text-white dark:text-white'
+                  ? 'text-slate-900 dark:text-slate-100'
+                  : 'text-slate-50 dark:text-slate-100'
                   }`}
               >
                 CargoConnect
@@ -52,7 +52,7 @@ const Header: React.FC = () => {
               <div
                 className={`text-xs font-medium transition-colors duration-300 ${isScrolled
                   ? 'text-blue-600 dark:text-blue-400'
-                  : 'text-blue-100 dark:text-blue-300'
+                  : 'text-blue-500 dark:text-blue-300'
                   }`}
               >
                 Logistics Solution
@@ -65,7 +65,7 @@ const Header: React.FC = () => {
             <AnimatedLink
               to="/"
               className={`text-sm font-medium transition-colors duration-300 hover:text-blue-600 dark:hover:text-blue-400 ${isScrolled
-                ? 'text-slate-700 dark:text-slate-300'
+                ? 'text-slate-900 dark:text-slate-100'
                 : 'text-white/90 dark:text-blue-100'
                 }`}
             >
@@ -74,7 +74,7 @@ const Header: React.FC = () => {
             <AnimatedLink
               to="/services"
               className={`text-sm font-medium transition-colors duration-300 hover:text-blue-600 dark:hover:text-blue-400 ${isScrolled
-                ? 'text-slate-700 dark:text-slate-300'
+                ? 'text-slate-900 dark:text-slate-100'
                 : 'text-white/90 dark:text-blue-100'
                 }`}
             >
@@ -83,7 +83,7 @@ const Header: React.FC = () => {
             <AnimatedLink
               to="/vehicles"
               className={`text-sm font-medium transition-colors duration-300 hover:text-blue-600 dark:hover:text-blue-400 ${isScrolled
-                ? 'text-slate-700 dark:text-slate-300'
+                ? 'text-slate-900 dark:text-slate-100'
                 : 'text-white/90 dark:text-blue-100'
                 }`}
             >
@@ -92,7 +92,7 @@ const Header: React.FC = () => {
             <AnimatedLink
               to="/about"
               className={`text-sm font-medium transition-colors duration-300 hover:text-blue-600 dark:hover:text-blue-400 ${isScrolled
-                ? 'text-slate-700 dark:text-slate-300'
+                ? 'text-slate-900 dark:text-slate-100'
                 : 'text-white/90 dark:text-blue-100'
                 }`}
             >
@@ -101,7 +101,7 @@ const Header: React.FC = () => {
             <AnimatedLink
               to="/contact"
               className={`text-sm font-medium transition-colors duration-300 hover:text-blue-600 dark:hover:text-blue-400 ${isScrolled
-                ? 'text-slate-700 dark:text-slate-300'
+                ? 'text-slate-900 dark:text-slate-100'
                 : 'text-white/90 dark:text-blue-100'
                 }`}
             >
@@ -152,12 +152,12 @@ const Header: React.FC = () => {
               {isMenuOpen ? (
                 <X
                   size={24}
-                  className={isScrolled ? 'text-slate-800 dark:text-white' : 'text-white'}
+                  className={isScrolled ? 'text-slate-800 dark:text-slate-100' : 'text-white/90'}
                 />
               ) : (
                 <Menu
                   size={24}
-                  className={isScrolled ? 'text-slate-800 dark:text-white' : 'text-white'}
+                  className={isScrolled ? 'text-slate-800 dark:text-slate-100' : 'text-white/90'}
                 />
               )}
             </button>
@@ -170,35 +170,35 @@ const Header: React.FC = () => {
             <nav className="flex flex-col gap-2 px-6">
               <AnimatedLink
                 to="/"
-                className="px-4 py-3 rounded-lg font-medium text-slate-700 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+                className="px-4 py-3 rounded-lg font-medium text-slate-900 dark:text-slate-100 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Home
               </AnimatedLink>
               <AnimatedLink
                 to="/services"
-                className="px-4 py-3 rounded-lg font-medium text-slate-700 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+                className="px-4 py-3 rounded-lg font-medium text-slate-900 dark:text-slate-100 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Services
               </AnimatedLink>
               <AnimatedLink
                 to="/vehicles"
-                className="px-4 py-3 rounded-lg font-medium text-slate-700 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+                className="px-4 py-3 rounded-lg font-medium text-slate-900 dark:text-slate-100 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Vehicles
               </AnimatedLink>
               <AnimatedLink
                 to="/about"
-                className="px-4 py-3 rounded-lg font-medium text-slate-700 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+                className="px-4 py-3 rounded-lg font-medium text-slate-900 dark:text-slate-100 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
                 About
               </AnimatedLink>
               <AnimatedLink
                 to="/contact"
-                className="px-4 py-3 rounded-lg font-medium text-slate-700 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+                className="px-4 py-3 rounded-lg font-medium text-slate-900 dark:text-slate-100 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact
