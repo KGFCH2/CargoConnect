@@ -1,4 +1,8 @@
 import { Vehicle } from '../types';
+import miniTempoImg from './Mini_Tempo.png';
+import standardTempoImg from './Standard_Tempo.png';
+import miniTruckImg from './Mini_Truck.png';
+import cargoTruckImg from './Cargo_Truck.png';
 
 export const vehicles: Vehicle[] = [
   {
@@ -9,7 +13,7 @@ export const vehicles: Vehicle[] = [
     description: 'Perfect for small apartment moves or delivering a few large items',
     pricePerKm: 8,
     basePrice: 200,
-    image: '/src/data/Mini_Tempo.png'
+    image: miniTempoImg
   },
   {
     id: 'v2',
@@ -19,7 +23,7 @@ export const vehicles: Vehicle[] = [
     description: 'Ideal for medium-sized moves or bulk deliveries',
     pricePerKm: 10,
     basePrice: 300,
-    image: '/src/data/Standard_Tempo.png'
+    image: standardTempoImg
   },
   {
     id: 'v4',
@@ -29,7 +33,7 @@ export const vehicles: Vehicle[] = [
     description: 'Versatile option for medium loads with good maneuverability',
     pricePerKm: 12,
     basePrice: 500,
-    image: '/src/data/Mini_Truck.png'
+    image: miniTruckImg
   },
   {
     id: 'v3',
@@ -39,6 +43,6 @@ export const vehicles: Vehicle[] = [
     description: 'Suitable for full home moves or commercial deliveries',
     pricePerKm: 15,
     basePrice: 800,
-    image: '/src/data/Cargo_Truck.png'
+    image: cargoTruckImg
   }
 ];
